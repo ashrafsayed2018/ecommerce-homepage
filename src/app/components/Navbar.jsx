@@ -6,6 +6,7 @@ import { useState } from "react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  console.log(isOpen);
 
   return (
     <nav className="bg-white">
@@ -87,7 +88,7 @@ export default function Navbar() {
       </div>
       {/* mobile menu items */}
       <ul
-        className={`bg-white p-4 border-[1px] border-gray-300  ${
+        className={`bg-white p-4 border-[1px] border-gray-300 z-50 ${
           isOpen ? "flex flex-col fixed right-0 left-0" : "hidden"
         }`}
       >
