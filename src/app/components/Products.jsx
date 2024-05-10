@@ -4,7 +4,7 @@ import ProductCard from "./ProductCard";
 
 export default function Products() {
   return (
-    <div className="max-w-4xl mx-auto my-16 px-8">
+    <div className="mx-auto my-16 px-8">
       {ProductItems.map((product) => {
         return <ProductCard key={product.id} product={product} />;
       })}

@@ -53,7 +53,7 @@ export default function ProductSlider() {
   };
 
   return (
-    <div className="px-8 mb-16 w-7xl h-[600px] mx-auto relative">
+    <div className="px-8 mb-16 h-screen mx-auto relative">
       <div
         className="left-arraw absolute  top-1/2 left-12 translate-x-0 -translate-y-1/2 text-3xl text-blue-600 z-50 cursor-pointer font-bold"
         onClick={goToPrevious}
