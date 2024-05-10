@@ -89,7 +89,7 @@ export default function Navbar() {
       {/* mobile menu items */}
       <ul
         className={`bg-white p-4 border-[1px] border-gray-300 z-50 ${
-          isOpen ? "flex flex-col fixed right-0 left-0" : "hidden"
+          isOpen ? "flex flex-col absolute right-0 left-0" : "hidden"
         }`}
       >
         {NavbarLinks.map((link) => {
