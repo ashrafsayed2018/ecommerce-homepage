@@ -150,7 +150,6 @@ body {
     margin: 0 auto 0;
   }
   .left-section nav {
-    display: none;
     width: 100%;
     position: fixed;
     top: 0;
