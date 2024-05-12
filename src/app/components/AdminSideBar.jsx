@@ -27,12 +27,12 @@ export default function AdminSideBar({ isAsideOpen, setIsAsideOpen }) {
             alt="logo"
             className="w-8 h-8 object-cover"
           />
-          <h2>
+          <h2 className="hidden sm:block">
             تهاني <span className="text-red-500">السعيدي</span>
           </h2>
         </div>
         <div
-          className="close pl-4"
+          className="close md:hidden pl-4"
           id="colse-btn"
           onClick={() => setIsAsideOpen(false)}
         >

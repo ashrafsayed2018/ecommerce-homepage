@@ -7,7 +7,7 @@ export default function AdminLeftNav({ isAsideOpen, setIsAsideOpen }) {
       <nav className="flex justify-end gap-8">
         <button
           id="menu-btn"
-          className="block mr-0"
+          className="hidden mr-0"
           onClick={() => setIsAsideOpen(!isAsideOpen)}
         >
           {isAsideOpen ? (
