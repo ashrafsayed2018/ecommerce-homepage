@@ -14,6 +14,9 @@
 body {
   overflow-x: hidden;
 }
+* {
+  outline: 1px solid red;
+}
 /* admin  */
 .admin-container {
   grid-template-columns: 12rem auto 23rem;
@@ -76,7 +79,9 @@ body {
 
 @media screen and (max-width: 768px) {
   .admin-container {
-    width: 100%;
+    width: 94%;
+    overflow-x: hidden;
+    background: blue;
     grid-template-columns: 1fr;
     padding: 0 1.5rem;
   }
