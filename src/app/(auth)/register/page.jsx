@@ -34,9 +34,9 @@ export default function RegisterPage() {
   async function handleRegister() {
     if (isFormValid()) {
       setLoader(true);
-      const data = await RegisterUserService(formData);
-      if (data.success) {
-        toast.success(data.message);
+      const response = await RegisterUserService(formData);
+      if (response.success) {
+        toast.success(response.message);
         setLoader(false);
         setFormData({
           name: "",
@@ -48,7 +48,7 @@ export default function RegisterPage() {
         router.push("/login");
       } else {
         setLoader(false);
-        toast.error(data.message);
+        toast.error(response.message);
       }
     }
   }

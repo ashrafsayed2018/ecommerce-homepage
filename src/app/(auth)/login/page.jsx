@@ -42,7 +42,7 @@ export default function LoginPage() {
         router.push("/");
       } else {
         setLoader(false);
-        toast.error(data.message);
+        toast.error(response.message);
       }
     }
   }

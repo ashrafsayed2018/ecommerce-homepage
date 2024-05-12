@@ -34,7 +34,7 @@ export async function POST(req) {
     if (!userExists) {
       return NextResponse.json({
         success: false,
-        message: "there is no account with that email",
+        message: "لا يوجد حساب مسجل بهذا البريد الالكتروني",
       });
     }
     // check the password
@@ -42,7 +42,7 @@ export async function POST(req) {
     if (!checkPassword) {
       return NextResponse.json({
         success: false,
-        message: "incorrect password",
+        message: "كلمة المرور غير صحيحة",
       });
     }
 
@@ -74,13 +74,13 @@ export async function POST(req) {
     };
     return NextResponse.json({
       success: true,
-      message: "login successful",
+      message: "تم تسجيل الدخول بنجاح",
       data: userData,
     });
   } catch (error) {
     return NextResponse.json({
       success: false,
-      message: "something went wrong please try again",
+      message: "حدث خطأ ما",
     });
   }
 }

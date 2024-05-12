@@ -44,13 +44,13 @@ export async function POST(req) {
     if (userExists) {
       return NextResponse.json({
         success: false,
-        message: "User is already exists please try with different email",
+        message: "المستخدم موجود بالفعل",
       });
     } else {
       if (password != confirmPassword) {
         return NextResponse.json({
           success: false,
-          message: "Password not matched",
+          message: "كلمة المرور غير متطابقة",
         });
       } else {
         const hashPassword = await hash(password, 12);
@@ -64,7 +64,7 @@ export async function POST(req) {
         if (createNewUser) {
           return NextResponse.json({
             success: true,
-            message: "account created successfully",
+            message: "تم التسجيل بنجاح",
           });
         }
       }
@@ -72,7 +72,7 @@ export async function POST(req) {
   } catch (error) {
     return NextResponse.json({
       success: false,
-      message: "something went wrong please try again",
+      message: "حدث خطأ ما",
     });
   }
 }
