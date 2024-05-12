@@ -173,7 +173,7 @@ export default function AdminPage() {
         </div>
         {/* end analytics */}
         <div className="new-users mt-6">
-          <h2>مستخدمين جدد</h2>
+          <h2 className="text-center mb-2">مستخدمين جدد</h2>
           <div className="user-list flex items-center justify-around flex-nowrap gap-6 ">
             <UserCard />
             <UserCard />
@@ -182,7 +182,7 @@ export default function AdminPage() {
         </div>
         {/* end new users */}
         <div className="recent-orders mt-6">
-          <h2>الطلبات الحالية</h2>
+          <h2 className="text-center mb-2">الطلبات الحالية</h2>
           <table className="w-full bg-white p-4 text-center shadow-xl rounded-lg transition-all duration-300 ease-in hover:shadow-none">
             <thead>
               <tr>
@@ -350,7 +350,7 @@ export default function AdminPage() {
         {/* end of user profile */}
         <div className="reminders mt-8">
           <div className="header flex items-center justify-between mb-3">
-            <h2> التذكيرات</h2>
+            <h2 className="text-center mb-2"> التذكيرات</h2>
             <span className="shadow-xl p-3 rounded-full cursor-pointer bg-white">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

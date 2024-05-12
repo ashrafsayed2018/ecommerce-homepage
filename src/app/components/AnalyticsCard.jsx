@@ -2,9 +2,9 @@ export default function AnalyticsCard({ title, value, color, percentage }) {
   return (
     <div className="analytics-card bg-white p-4 rounded-lg mt-4 shadow-xl cursor-pointer transition-all duration-300 ease-in hover:shadow-none">
       <div className="status flex items-center justify-between">
-        <div className="info">
-          <h3 className="mr-3 text-lg">{title}</h3>
-          <h1>{value}</h1>
+        <div className="info mr-3">
+          <h3 className="text-lg mb-2">{title}</h3>
+          <h1 className="text-3xl">{value}</h1>
         </div>
         <div className="progress relative w-24 h-24 rounded-full">
           <svg
