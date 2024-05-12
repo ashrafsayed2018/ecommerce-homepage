@@ -1,13 +1,23 @@
 "use client";
+import { GlobalContext } from "@/context";
 import { NavbarLinks } from "@/utils";
+import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useContext, useState } from "react";
 
 export default function Navbar() {
+  const { user, setUser, setIsAuthUser } = useContext(GlobalContext);
   const [isOpen, setIsOpen] = useState(false);
-  console.log(isOpen);
-
+  const router = useRouter();
+  const handleLogout = () => {
+    setIsAuthUser(false);
+    setUser({});
+    Cookies.remove("token");
+    localStorage.clear();
+    router.push("/");
+  };
   return (
     <nav className="bg-white">
       <div className="flex items-center justify-between p-4">
@@ -33,6 +43,11 @@ export default function Navbar() {
                 </li>
               );
             })}
+            {user.role === "admin" ? (
+              <li className="py-2">
+                <Link href="/admin">لوحة التحكم</Link>
+              </li>
+            ) : null}
           </ul>
         </div>
         {/* account and cart and menu icon */}
@@ -53,20 +68,38 @@ export default function Navbar() {
               />
             </svg>
           </div>
-          <div className="account cursor-pointer">
+          {Object.keys(user).length ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
+              fill="none"
               viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-6 h-6"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-5 h-5 cursor-pointer"
+              onClick={handleLogout}
             >
               <path
-                fillRule="evenodd"
-                d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
-                clipRule="evenodd"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
               />
             </svg>
-          </div>
+          ) : (
+            <Link href="/register" className="account cursor-pointer">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </Link>
+          )}
           <div
             className="menu cursor-pointer sm:hidden"
             onClick={() => setIsOpen((prevState) => (prevState = !prevState))}
@@ -99,6 +132,11 @@ export default function Navbar() {
             </li>
           );
         })}
+        {user.role === "admin" ? (
+          <li className="py-2">
+            <Link href="/admin">لوحة التحكم</Link>
+          </li>
+        ) : null}
       </ul>
     </nav>
   );

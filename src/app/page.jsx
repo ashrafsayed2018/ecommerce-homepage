@@ -1,3 +1,4 @@
+"use client";
 import FixedContact from "./components/FixedContact";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";

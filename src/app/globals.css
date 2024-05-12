@@ -10,3 +10,181 @@
     @apply py-2 px-5 bg-green-500 text-white font-semibold rounded-full shadow-md hover:bg-green-700 focus:outline-none focus:ring focus:ring-violet-400 focus:ring-opacity-75;
   }
 }
+
+body {
+  overflow-x: hidden;
+}
+/* admin  */
+.admin-container {
+  grid-template-columns: 12rem auto 23rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    width: 95%;
+    grid-template-columns: 7rem auto 23rem;
+  }
+
+  aside .logo h2 {
+    display: none;
+  }
+
+  aside .sidebar a h3 {
+    display: none;
+  }
+
+  aside .sidebar a {
+    width: 5.6rem;
+  }
+
+  aside .sidebar a:last-child {
+    position: relative;
+    margin-top: 1.8rem;
+  }
+
+  main .analytics {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  main .new-users .user-list .user {
+    flex-basis: 40%;
+  }
+
+  main .recent-orders {
+    width: 94%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 2rem 0 0 0.8rem;
+  }
+
+  main .recent-orders table {
+    width: 83vw;
+  }
+
+  main table thead tr th:last-child,
+  main table thead tr th:first-child {
+    display: none;
+  }
+
+  main table tbody tr td:last-child,
+  main table tbody tr td:first-child {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .admin-container {
+    width: 100%;
+    grid-template-columns: 1fr;
+    padding: 0 1.5rem;
+  }
+
+  aside {
+    position: fixed;
+    background-color: white;
+    left: -100%;
+    display: none;
+    width: 18rem;
+    z-index: 3;
+    box-shadow: 1rem 3rem 4rem rgba(0, 0, 0, 0.3);
+    height: 100vh;
+    transition: all 0.5s ease-in-out;
+    animation: showMenu 0.4s ease forwards;
+  }
+
+  @keyframes showMenu {
+    to {
+      left: 0;
+    }
+  }
+  aside .logo {
+    margin-left: 1rem;
+  }
+
+  aside .logo h2 {
+    display: inline;
+  }
+  aside .sidebar a {
+    width: 100%;
+    height: 3.4rem;
+  }
+  aside .sidebar a h3 {
+    display: inline;
+  }
+
+  aside .sidebar a:last-child {
+    position: absolute;
+    bottom: 5rem;
+  }
+  aside .toggle .close {
+    display: inline-block;
+    cursor: pointer;
+  }
+  main {
+    margin-top: 8rem;
+    padding: 0 1rem;
+  }
+  main .new-users .user-list .user {
+    flex-basis: 35%;
+  }
+
+  main .recent-orders {
+    position: relative;
+    width: 100%;
+    margin: 3rem 0 0 0;
+  }
+
+  main .recent-orders table {
+    width: 100%;
+    margin: 0;
+  }
+  .left-section {
+    width: 94%;
+    margin: 0 auto 0;
+  }
+  .left-section nav {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    align-items: center;
+    background: white;
+    padding: 16px;
+    height: 4.6rem;
+    z-index: 2;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.1);
+    margin: 0;
+  }
+  .left-section nav #dark-mode {
+    width: 4.4rem;
+    position: absolute;
+    right: 66%;
+  }
+  .left-section nav .logo h2 {
+    display: inline;
+  }
+  .left-section .profile .info {
+    display: none;
+  }
+  .left-section nav button#menu-btn {
+    display: inline-flex;
+    background: transparent;
+    cursor: pointer;
+    color: gray;
+    position: absolute;
+    right: 1rem;
+  }
+  .left-section nav button#dark-mode {
+    display: inline-flex;
+    background: transparent;
+    cursor: pointer;
+    color: gray;
+    position: absolute;
+    left: 1rem;
+  }
+  .left-section nav button#dark-mode svg {
+    width: 2rem;
+  }
+}

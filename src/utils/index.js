@@ -111,3 +111,51 @@ export const ContactLinks = [
     icon: <FontAwesomeIcon icon={faWhatsapp} size="xl" color="white" />,
   },
 ];
+
+export const RegistrationFormControls = [
+  {
+    id: "name",
+    type: "text",
+    placeholder: "ادخل اسمك",
+    label: "الاسم",
+    componentType: "input",
+  },
+  {
+    id: "email",
+    type: "email",
+    placeholder: "البريد الالكتروني",
+    label: "البريد الالكتروني",
+    componentType: "input",
+  },
+  {
+    id: "password",
+    type: "text",
+    placeholder: "كلمة المرور",
+    label: "كلمة المرور",
+    componentType: "input",
+  },
+  {
+    id: "confirmPassword",
+    type: "text",
+    placeholder: " تأكيد كلمة المرور",
+    label: "تأكيد كلمة المرور",
+    componentType: "input",
+  },
+];
+
+export const LoginFormControls = [
+  {
+    id: "email",
+    type: "email",
+    placeholder: "البريد الاكتروني",
+    label: "البريد الالكتروني",
+    componentType: "input",
+  },
+  {
+    id: "password",
+    type: "password",
+    placeholder: "كلمة المرور",
+    label: "كلمة المرور",
+    componentType: "input",
+  },
+];
