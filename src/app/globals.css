@@ -80,8 +80,6 @@ body {
 @media screen and (max-width: 768px) {
   .admin-container {
     width: 100%;
-    overflow-x: hidden;
-    background: blue;
     grid-template-columns: 1fr;
     padding: 0;
   }
