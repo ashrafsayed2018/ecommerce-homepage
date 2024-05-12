@@ -5,7 +5,16 @@ import {
   faWhatsapp,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
-import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
+import {
+  faBoxOpen,
+  faCog,
+  faDashboard,
+  faList,
+  faList12,
+  faPhone,
+  faUserAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const NavbarLinks = [
@@ -109,6 +118,69 @@ export const ContactLinks = [
     href: "https://wa.me/message/BUZO5EPDD3NEE1",
     backgroundColor: "green",
     icon: <FontAwesomeIcon icon={faWhatsapp} size="xl" color="white" />,
+  },
+];
+
+export const AdminLinks = [
+  {
+    id: 1,
+    name: "لوحة التحكم",
+    href: "/admin",
+    icon: (
+      <FontAwesomeIcon
+        icon={faDashboard}
+        color="gray"
+        style={{ width: "16", height: "16" }}
+      />
+    ),
+  },
+  {
+    id: 2,
+    name: "المستخدمين",
+    href: "/admin/users",
+    icon: (
+      <FontAwesomeIcon
+        icon={faUserAlt}
+        color="gray"
+        style={{ width: "16", height: "16" }}
+      />
+    ),
+  },
+  {
+    id: 3,
+    name: "المنتجات",
+    href: "/admin/products",
+    icon: (
+      <FontAwesomeIcon
+        icon={faBoxOpen}
+        color="gray"
+        style={{ width: "16", height: "16" }}
+      />
+    ),
+  },
+  {
+    id: 4,
+    name: "الطلبات",
+    href: "/admin/orders",
+    icon: (
+      <FontAwesomeIcon
+        icon={faList}
+        color="gray"
+        style={{ width: "16", height: "16" }}
+      />
+    ),
+  },
+  {
+    id: 5,
+    name: "الاعدادات",
+    href: "/admin/settings",
+    icon: (
+      <FontAwesomeIcon
+        icon={faCog}
+        color="gray"
+        style={{ width: "16", height: "16" }}
+      />
+    ),
   },
 ];
 

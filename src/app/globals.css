@@ -85,7 +85,7 @@ body {
     position: fixed;
     background-color: white;
     left: -100%;
-    display: none;
+
     width: 18rem;
     z-index: 3;
     box-shadow: 1rem 3rem 4rem rgba(0, 0, 0, 0.3);
