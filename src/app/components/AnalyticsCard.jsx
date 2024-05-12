@@ -4,7 +4,7 @@ export default function AnalyticsCard({ title, value, color, percentage }) {
       <div className="status flex items-center justify-between">
         <div className="info mr-3">
           <h3 className="text-lg mb-2">{title}</h3>
-          <h1 className="text-3xl">{value}</h1>
+          <h1 className="text-xl">{value}</h1>
         </div>
         <div className="progress relative w-24 h-24 rounded-full">
           <svg
