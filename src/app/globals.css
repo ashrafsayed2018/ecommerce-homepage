@@ -129,7 +129,7 @@ body {
   }
   main {
     margin-top: 8rem;
-    padding: 0 1rem;
+    padding: 0;
   }
   main .new-users .user-list .user {
     flex-basis: 35%;
