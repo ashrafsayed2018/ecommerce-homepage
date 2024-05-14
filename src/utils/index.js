@@ -201,14 +201,14 @@ export const RegistrationFormControls = [
   },
   {
     id: "password",
-    type: "text",
+    type: "password",
     placeholder: "كلمة المرور",
     label: "كلمة المرور",
     componentType: "input",
   },
   {
     id: "confirmPassword",
-    type: "text",
+    type: "password",
     placeholder: " تأكيد كلمة المرور",
     label: "تأكيد كلمة المرور",
     componentType: "input",
