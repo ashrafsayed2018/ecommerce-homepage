@@ -5,7 +5,6 @@ import {
   faWhatsapp,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
-import { faUser } from "@fortawesome/free-regular-svg-icons";
 import {
   faBoxOpen,
   faCog,
@@ -231,3 +230,104 @@ export const LoginFormControls = [
     componentType: "input",
   },
 ];
+export const adminAddProductformControls = [
+  {
+    id: "name",
+    type: "text",
+    placeholder: "اسم المنتج",
+    label: "اسم المنتج",
+    componentType: "input",
+  },
+  {
+    id: "price",
+    type: "number",
+    placeholder: "سعر المنتج",
+    label: "سعر المنتج",
+    componentType: "input",
+  },
+  {
+    id: "description",
+    type: "text",
+    placeholder: "وصف المنتج",
+    label: "وصف المنتج",
+    componentType: "input",
+  },
+  {
+    id: "category",
+    type: "",
+    placeholder: "",
+    label: "القسم",
+    componentType: "select",
+    options: [
+      {
+        id: "رجال",
+        label: "رجال",
+      },
+      {
+        id: "نساء",
+        label: "نساء",
+      },
+      {
+        id: "اطفال",
+        label: "اطفال",
+      },
+    ],
+  },
+  {
+    id: "deliveryInfo",
+    type: "text",
+    placeholder: "معلومات التوصيل",
+    label: "معلومات التوصيل",
+    componentType: "input",
+  },
+  {
+    id: "onSale",
+    type: "",
+    placeholder: "",
+    label: "خصم",
+    componentType: "select",
+    options: [
+      {
+        id: "yes",
+        label: "نعم",
+      },
+      {
+        id: "no",
+        label: "لا",
+      },
+    ],
+  },
+  {
+    id: "priceDrop",
+    type: "number",
+    placeholder: "نسبة الخصم",
+    label: "نسبة الخصم",
+    componentType: "input",
+  },
+];
+
+export const AvailableSizes = [
+  {
+    id: "s",
+    label: "S",
+  },
+  {
+    id: "m",
+    label: "M",
+  },
+  {
+    id: "l",
+    label: "L",
+  },
+];
+// Your web app's Firebase configuration
+export const firebaseConfig = {
+  apiKey: "AIzaSyB6u0OlNgnXoUif1SKnv6V1o5FoqKiscJM",
+  authDomain: "next-js-ecommerce-59b62.firebaseapp.com",
+  projectId: "next-js-ecommerce-59b62",
+  storageBucket: "next-js-ecommerce-59b62.appspot.com",
+  messagingSenderId: "252303426375",
+  appId: "1:252303426375:web:dc750523a68ecb01db4262",
+};
+
+export const firebaseStroageURL = "gs://next-js-ecommerce-59b62.appspot.com";

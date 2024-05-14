@@ -7,6 +7,9 @@ export default function GlobalState({ children }) {
   // authentication state
   const [isAuthUser, setIsAuthUser] = useState(false);
   const [loader, setLoader] = useState(false);
+  const [pageLoader, setPageLoader] = useState(false);
+  const [allOrdersForUser, setAllOrdersForUser] = useState([]);
+  const [showCartModal, setShowCartModal] = useState(false);
   // user state
   const [user, setUser] = useState({});
 
@@ -41,6 +44,12 @@ export default function GlobalState({ children }) {
         setUser,
         loader,
         setLoader,
+        pageLoader,
+        setPageLoader,
+        allOrdersForUser,
+        setAllOrdersForUser,
+        showCartModal,
+        setShowCartModal,
       }}
     >
       {children}

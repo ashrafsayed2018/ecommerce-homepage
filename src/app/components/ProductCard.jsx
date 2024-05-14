@@ -1,8 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ProductCard({ product }) {
   return (
-    <div className="w-full mb-16">
+    <Link href={`/product/${product._id}`} className="w-full mb-16">
       <div className="image">
         <Image
           src={product.imageUrl}
@@ -18,6 +19,6 @@ export default function ProductCard({ product }) {
         <p className="text-sm font-thin text-gray-500">{product.category}</p>
         <p className="italic">KWD {product.price}</p>
       </div>
-    </div>
+    </Link>
   );
 }
