@@ -13,8 +13,8 @@ import { toast } from "react-toastify";
 import { PulseLoader } from "react-spinners";
 import { useRouter } from "next/navigation";
 import InputComponent from "../components/formElements/inputComponent";
-import ToastNotificaton from "../components/toastNotification";
 import Loader from "../components/Loader";
+import ToastNotification from "../components/Notification";
 
 export default function AccountPage() {
   const router = useRouter();
@@ -245,7 +245,7 @@ export default function AccountPage() {
               </div>
             </div>
           </div>
-          <ToastNotificaton />
+          <ToastNotification />
         </div>
       )}
     </section>

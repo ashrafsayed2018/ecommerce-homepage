@@ -6,7 +6,8 @@ import Products from "./components/Products";
 import ProductSlider from "./components/ProductSlider";
 import Video from "./components/Video";
 import { GlobalContext } from "@/context";
-import ToastNotificaton from "./components/toastNotification";
+
+import ToastNotification from "./components/Notification";
 
 export default function Home() {
   const { showCartModal, setShowCartModal } = useContext(GlobalContext);
@@ -18,7 +19,7 @@ export default function Home() {
         <ProductSlider />
         <Video />
         {showCartModal && <CartModal />}
-        <ToastNotificaton />
+        <ToastNotification />
       </div>
     </section>
   );

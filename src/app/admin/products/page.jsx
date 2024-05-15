@@ -1,5 +1,6 @@
 "use client";
-import ToastNotificaton from "@/app/components/toastNotification";
+
+import ToastNotification from "@/app/components/Notification";
 import { deleteProductService, getAllAdminProducts } from "@/services/product";
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -146,7 +147,7 @@ export default function ProductsPage() {
           </div>
         </div>
       </div>
-      <ToastNotificaton />
+      <ToastNotification />
     </div>
   );
 }

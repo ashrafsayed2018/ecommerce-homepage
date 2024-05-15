@@ -10,8 +10,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { PulseLoader } from "react-spinners";
 import { toast } from "react-toastify";
-import ToastNotificaton from "../components/toastNotification";
 import Link from "next/link";
+import ToastNotification from "../components/Notification";
 
 export default function CheckoutPage() {
   const { user, cartItems, address, setAddress } = useContext(GlobalContext);
@@ -297,7 +297,7 @@ export default function CheckoutPage() {
           </div>
         </div>
       </div>
-      <ToastNotificaton />
+      <ToastNotification />
     </div>
   );
 }

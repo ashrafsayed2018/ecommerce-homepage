@@ -1,6 +1,6 @@
 "use client";
 
-import ToastNotificaton from "@/app/components/toastNotification";
+import ToastNotification from "@/app/components/Notification";
 import { GlobalContext } from "@/context";
 import { getAllUserOrder } from "@/services/order";
 import { useRouter } from "next/navigation";
@@ -114,7 +114,7 @@ export default function Orders() {
           </div>
         </div>
       </div>
-      <ToastNotificaton />
+      <ToastNotification />
     </section>
   );
 }

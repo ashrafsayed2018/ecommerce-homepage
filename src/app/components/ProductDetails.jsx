@@ -4,8 +4,8 @@ import { useContext } from "react";
 import { GlobalContext } from "@/context";
 import { toast } from "react-toastify";
 import { addToCart } from "@/services/cart";
-import ToastNotificaton from "./toastNotification";
 import Loader from "./Loader";
+import ToastNotification from "./Notification";
 
 export default function ProductDetails({ product }) {
   const { loader, setLoader, setShowCartModal, user } =
@@ -139,7 +139,7 @@ export default function ProductDetails({ product }) {
           </div>
         </div>
       </div>
-      <ToastNotificaton />
+      <ToastNotification />
     </section>
   );
 }

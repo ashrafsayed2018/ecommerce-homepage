@@ -4,12 +4,12 @@ import { GlobalContext } from "@/context";
 import { helperForUploadImageToFirebase } from "@/helpers/uploadImageToFirebase";
 import { addNewProductService } from "@/services/product";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 
 import { useRouter } from "next/navigation";
 import InputComponent from "@/app/components/formElements/inputComponent";
-import ToastNotificaton from "@/app/components/toastNotification";
+import ToastNotification from "@/app/components/Notification";
 import SelectComponent from "@/app/components/formElements/selectComponent";
 import TileComponent from "@/app/components/formElements/tileComponent";
 import Loader from "@/app/components/Loader";
@@ -158,7 +158,7 @@ export default function AddProduct() {
           </button>
         </div>
       </div>
-      <ToastNotificaton />
+      <ToastNotification />
     </div>
   );
 }

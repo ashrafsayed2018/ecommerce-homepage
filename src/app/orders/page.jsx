@@ -7,7 +7,7 @@ import { useContext, useEffect } from "react";
 import { PulseLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import Link from "next/link";
-import ToastNotificaton from "../components/toastNotification";
+import ToastNotification from "../components/Notification";
 
 export default function Orders() {
   const {
@@ -122,7 +122,7 @@ export default function Orders() {
           </div>
         </div>
       </div>
-      <ToastNotificaton />
+      <ToastNotification />
     </section>
   );
 }

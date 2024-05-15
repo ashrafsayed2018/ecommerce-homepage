@@ -8,11 +8,11 @@ import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 
-import ToastNotificaton from "@/app/components/toastNotification";
 import SelectComponent from "@/app/components/formElements/selectComponent";
 import TileComponent from "@/app/components/formElements/tileComponent";
 import Loader from "@/app/components/Loader";
 import InputComponent from "@/app/components/formElements/inputComponent";
+import ToastNotification from "@/app/components/Notification";
 
 export default function UpdateProduct() {
   const params = useParams();
@@ -161,7 +161,7 @@ export default function UpdateProduct() {
           </button>
         </div>
       </div>
-      <ToastNotificaton />
+      <ToastNotification />
     </div>
   );
 }
