@@ -9,7 +9,7 @@ export default function AdminLayout({ children }) {
     <div className="admin-container grid gap-6 w-[96%] mx-auto my-0">
       <AdminSideBar isAsideOpen={isAsideOpen} setIsAsideOpen={setIsAsideOpen} />
 
-      {children}
+      <div className="overflow-x-auto">{children}</div>
       {/* left section */}
       <AdminLeftNav isAsideOpen={isAsideOpen} setIsAsideOpen={setIsAsideOpen} />
     </div>

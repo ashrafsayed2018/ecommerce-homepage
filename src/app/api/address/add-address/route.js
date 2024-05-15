@@ -13,7 +13,7 @@ const addNewAddress = Joi.object({
   postalCode: Joi.string().required(),
   userID: Joi.string().required(),
 });
-connectToDb();
+ connectToDb();
 export async function POST(req) {
   try {
     const authenticatedUser = await AuthUser(req);
