@@ -52,7 +52,7 @@ export async function POST(req) {
     } else {
       return NextResponse.json({
         success: false,
-        message: "you are not authenticated",
+        message: "ليس لديك حساب، الرجاء تسجيل الدخول",
       });
     }
   } catch (error) {

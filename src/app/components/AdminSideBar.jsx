@@ -20,7 +20,7 @@ export default function AdminSideBar({ isAsideOpen, setIsAsideOpen }) {
     <aside
       className={`h-screen ${isAsideOpen ? "block" : "hidden md:block"} block`}
     >
-      <div className="toggle flex items-center justify-between mt-6">
+      <div className="toggle flex items-center justify-between ">
         <div className="logo flex items-center justify-between gap-2">
           <img
             src="/images/tahani_logo.jpg"
@@ -47,7 +47,7 @@ export default function AdminSideBar({ isAsideOpen, setIsAsideOpen }) {
         </div>
       </div>
       {/* sidebar */}
-      <div className="sidebar flex flex-col bg-white shadow-xl rounded-2xl h-[88%] relative top-6 transition-all duration-300 ease-linear hover:shadow-none cursor-pointer">
+      <div className="sidebar flex flex-col bg-white shadow-2xl rounded-2xl h-[88%] relative top-6 transition-all duration-300 ease-linear hover:shadow-none cursor-pointer">
         {AdminLinks.map((link) => (
           <Link
             key={link.id}

@@ -80,11 +80,16 @@ export default function ProductDetails({ product }) {
                     product.onSale === "yes" ? "line-through" : ""
                   }`}
                 >
-                  kwd {product.price}
+                  د.ك
+                  {"  "} {product.price}
                 </h1>
                 {product.onSale === "yes" ? (
                   <p className="text-sm lg:text-xl text-red-700">
-                    <span className="text[10px]"> kwd </span>
+                    <span className="text[10px]">
+                      {" "}
+                      د.ك
+                      {"  "}{" "}
+                    </span>
                     {(
                       product.price -
                       product.price * (product.priceDrop / 100)
@@ -96,7 +101,7 @@ export default function ProductDetails({ product }) {
                 Add to cart
               </button> */}
               <button
-                className=" w-3/5 text-center p-3 rounded-xl  my-4 mx-auto bg-blue-700 text-white "
+                className=" w-3/5 text-center p-3 rounded-xl  my-4 mx-auto bg-blue-700 text-white"
                 onClick={() => handleAddToCart(product)}
               >
                 {loader && loader.loading && loader.id == product._id ? (

@@ -14,32 +14,32 @@ export async function DELETE(req) {
       if (!id) {
         return NextResponse.json({
           success: false,
-          message: "cart item not found",
+          message: "لا يوجد منتجات في عربة التسوق الخاصة بك",
         });
       }
       const deleteCartItem = await Cart.findByIdAndDelete(id);
       if (!deleteCartItem) {
         return NextResponse.json({
           success: false,
-          message: "failed to delete cart item",
+          message: "فشل العملية، الرجاء المحاولة مرة اخرى",
         });
       } else {
         return NextResponse.json({
           success: true,
-          message: "cart item deleted successfully",
+          message: "تم حذف المنتج من عربة التسوق بنجاح",
         });
       }
     } else {
       return NextResponse.json({
         success: false,
-        message: "you are not authenticated",
+        message: "ليس لديك حساب، الرجاء تسجيل الدخول",
       });
     }
   } catch (error) {
     console.log(error);
     return NextResponse.json({
       success: false,
-      message: "something went wrong please try again",
+      message: "فشل العملية، الرجاء المحاولة مرة اخرى",
     });
   }
 }

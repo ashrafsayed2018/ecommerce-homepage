@@ -59,25 +59,25 @@ export async function POST(req) {
       if (newProduct) {
         return NextResponse.json({
           success: true,
-          message: "new product created successfully",
+          message: "تمت اضافة المنتج بنجاح",
         });
       } else {
         return NextResponse.json({
           success: false,
-          message: "failed to create product please try again",
+          message: "فشل في اضافة المنتج",
         });
       }
     } else {
       return NextResponse.json({
         success: false,
-        message: "sorry you are not allowed to access this page",
+        message: "عذرا ليس لديك صلاحيات للدخول على هذه الصفحة",
       });
     }
   } catch (error) {
     console.log(error);
     return NextResponse.json({
       success: false,
-      message: "something went wrong please try again",
+      message: "حدث خطاء ما",
     });
   }
 }

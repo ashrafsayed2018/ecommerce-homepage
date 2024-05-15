@@ -320,6 +320,44 @@ export const AvailableSizes = [
     label: "L",
   },
 ];
+
+export const addNewAddressFormControls = [
+  {
+    id: "fullName",
+    type: "input",
+    placeholder: "الاسم الكامل",
+    label: "الاسم الكامل",
+    componentType: "input",
+  },
+  {
+    id: "address",
+    type: "input",
+    placeholder: "ادخل العنوان ",
+    label: "العنوان",
+    componentType: "input",
+  },
+  {
+    id: "city",
+    type: "input",
+    placeholder: "ادخل المدينة",
+    label: "المدينة",
+    componentType: "input",
+  },
+  {
+    id: "country",
+    type: "input",
+    placeholder: "ادخل الدولة",
+    label: "الدولة",
+    componentType: "input",
+  },
+  {
+    id: "postalCode",
+    type: "input",
+    placeholder: "ادخل الرمز البريدي",
+    label: "الرمز البريدي",
+    componentType: "input",
+  },
+];
 // Your web app's Firebase configuration
 export const firebaseConfig = {
   apiKey: "AIzaSyB6u0OlNgnXoUif1SKnv6V1o5FoqKiscJM",

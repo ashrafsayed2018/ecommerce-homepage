@@ -154,11 +154,7 @@ export default function UpdateProduct() {
             disabled={!isFormValid()}
           >
             {loader ? (
-              <Loader
-                text="updating product ..."
-                loading={loader}
-                color="white"
-              />
+              <Loader text="تحديث المنتج ..." loading={loader} color="white" />
             ) : (
               "تحديث المنتج"
             )}

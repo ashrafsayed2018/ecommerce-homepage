@@ -18,11 +18,9 @@ export default function UsersPage() {
     getUsers();
   }, []);
 
-  console.log(users);
-
   return (
     <div className="mt-20">
-      <h2>صفحة المستخدمين</h2>
+      <h2 className="text-center mb-2 text-lg md:text-2xl">صفحة المستخدمين</h2>
       <div className="container mx-auto px-4 sm:px-8">
         <div className="py-8">
           {/* <div>
@@ -50,7 +48,7 @@ export default function UsersPage() {
                 <tbody>
                   {users &&
                     users.map((user) => (
-                      <tr>
+                      <tr key={user._id}>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <div className="flex items-center">
                             <div className="flex-shrink-0 w-10 h-10">

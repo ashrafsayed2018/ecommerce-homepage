@@ -10,7 +10,7 @@ export default function AdminPage() {
         {/* sales */}
         <AnalyticsCard
           title="اجمالي المبيعات"
-          value="KWD 500.00"
+          value="د.ك 500.00"
           color="red"
           percentage="75%"
         />

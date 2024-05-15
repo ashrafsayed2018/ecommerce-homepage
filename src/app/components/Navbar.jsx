@@ -8,9 +8,10 @@ import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 
 export default function Navbar() {
-  const { user, setUser, setIsAuthUser } = useContext(GlobalContext);
+  const { user, setUser, setIsAuthUser, cartItems } = useContext(GlobalContext);
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
+
   const handleLogout = () => {
     setIsAuthUser(false);
     setUser({});
@@ -52,7 +53,15 @@ export default function Navbar() {
         </div>
         {/* account and cart and menu icon */}
         <div className="flex gap-6 items-center">
-          <div className="cart cursor-pointer">
+          <button
+            className="cart cursor-pointer relative"
+            onClick={() => router.push("/cart")}
+          >
+            {cartItems && cartItems.length >= 0 && (
+              <span className="absolute -top-4 -right-4  w-5 h-5 rounded-full bg-red-500 text-white text-[10px] flex items-center justify-center">
+                {cartItems.length}
+              </span>
+            )}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -67,7 +76,7 @@ export default function Navbar() {
                 d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
               />
             </svg>
-          </div>
+          </button>
           {Object.keys(user).length ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -134,7 +143,14 @@ export default function Navbar() {
         })}
         {user.role === "admin" ? (
           <li className="py-2">
-            <Link href="/admin">لوحة التحكم</Link>
+            <button
+              onClick={() => {
+                router.push("/admin");
+                setIsOpen(false);
+              }}
+            >
+              لوحة التحكم
+            </button>
           </li>
         ) : null}
       </ul>

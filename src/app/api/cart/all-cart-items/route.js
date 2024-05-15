@@ -16,7 +16,7 @@ export async function GET(req) {
       if (!id) {
         return NextResponse.json({
           success: false,
-          message: "please login first",
+          message: "ليس لديك حساب، الرجاء تسجيل الدخول",
         });
       }
       await Product.find({});
@@ -32,20 +32,20 @@ export async function GET(req) {
         return NextResponse.json({
           success: false,
           status: 204,
-          message: "there is no cart item found",
+          message: "لا يوجد منتجات في عربة التسوق الخاصة بك",
         });
       }
     } else {
       return NextResponse.json({
         success: false,
-        message: "you are not authenticated bla bla bla bla bla bla bla bla",
+        message: "ليس لديك حساب، الرجاء تسجيل الدخول",
       });
     }
   } catch (error) {
     console.log(error);
     return NextResponse.json({
       success: false,
-      message: "something went wrong please try again",
+      message: "فشل العملية، الرجاء المحاولة مرة اخرى",
     });
   }
 }

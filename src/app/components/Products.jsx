@@ -20,7 +20,6 @@ export default function Products() {
   useEffect(() => {
     getListOfProducts();
   }, []);
-  console.log(products);
   return (
     <div className="mx-auto my-16 px-8">
       {products.map((product) => {

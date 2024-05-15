@@ -12,7 +12,16 @@ export default function GlobalState({ children }) {
   const [showCartModal, setShowCartModal] = useState(false);
   // user state
   const [user, setUser] = useState({});
-
+  const [cartItems, setCartItems] = useState([]);
+  const [address, setAddress] = useState({});
+  const [orderDetails, setOrderDetails] = useState(null);
+  const [addressFormData, setAddressFormData] = useState({
+    fullName: "",
+    address: "",
+    country: "",
+    city: "",
+    postalCode: "",
+  });
   useEffect(() => {
     if (Cookies.get("token") !== undefined) {
       setIsAuthUser(true);
@@ -23,11 +32,11 @@ export default function GlobalState({ children }) {
         setUser(userData);
       }
 
-      // const getCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-      // // Check if cart items have changed
-      // if (JSON.stringify(getCartItems) !== JSON.stringify(cartItems)) {
-      //   setCartItems(getCartItems);
-      // }
+      const getCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+      // Check if cart items have changed
+      if (JSON.stringify(getCartItems) !== JSON.stringify(cartItems)) {
+        setCartItems(getCartItems);
+      }
     } else {
       // make use un authenticated
       setIsAuthUser(false);
@@ -50,6 +59,14 @@ export default function GlobalState({ children }) {
         setAllOrdersForUser,
         showCartModal,
         setShowCartModal,
+        cartItems,
+        setCartItems,
+        address,
+        setAddress,
+        addressFormData,
+        setAddressFormData,
+        orderDetails,
+        setOrderDetails,
       }}
     >
       {children}
