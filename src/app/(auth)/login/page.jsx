@@ -26,6 +26,7 @@ export default function LoginPage() {
   }
   async function handleLogin() {
     if (isFormValid()) {
+      // set loader to true
       setLoader(true);
       const response = await LoginUserService(formData);
       if (response.success) {
