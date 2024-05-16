@@ -27,7 +27,6 @@ export default function CartModal() {
       setLoader({ loading: false, id: "" });
       toast.success(response.message);
       extractAllCartItems();
-      console.log(cartItems.length);
     } else {
       setLoader({ loading: false, id: "" });
       toast.error(response.message);
@@ -46,7 +45,6 @@ export default function CartModal() {
       extractAllCartItems();
     }
   }, [user]);
-  console.log(cartItems);
   return (
     <CommonModal
       showButtons={true}

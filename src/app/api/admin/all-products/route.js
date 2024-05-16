@@ -7,7 +7,6 @@ connectToDb();
 export async function GET() {
   try {
     const allProducts = await Product.find({}).sort({ createdAt: -1 });
-
     if (allProducts) {
       return NextResponse.json({
         success: true,
