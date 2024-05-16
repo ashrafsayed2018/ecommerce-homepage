@@ -15,17 +15,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <Suspense fallback={<div>جاري تحميل...</div>}>
-      <html lang="ar" dir="rtl">
-        <body className={inter.className}>
-          <GlobalState>
-            <Navbar />
-            {children}
-            <Footer />
-            <FixedContact />
-          </GlobalState>
-        </body>
-      </html>
-    </Suspense>
+    <html lang="ar" dir="rtl">
+      <body className={inter.className}>
+        <GlobalState>
+          <Navbar />
+          {children}
+          <Footer />
+          <FixedContact />
+        </GlobalState>
+      </body>
+    </html>
   );
 }
