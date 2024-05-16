@@ -16,7 +16,7 @@ export default function Navbar() {
     setIsAuthUser(false);
     setUser({});
     Cookies.remove("token");
-    localStorage.clear();
+    localStorage.removeItem("user");
     router.push("/");
   };
   return (

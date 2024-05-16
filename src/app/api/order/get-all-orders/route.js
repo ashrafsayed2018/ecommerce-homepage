@@ -30,20 +30,20 @@ export async function GET(req) {
       } else {
         return NextResponse.json({
           success: false,
-          message: "failed to get all orders please try again",
+          message: "فشل في جلب الطلبات الرجاء المحاولة لاحقا",
         });
       }
     } else {
       return NextResponse.json({
         success: false,
-        message: "sorry your are not authenticated",
+        message: "عذرا  ليس لديك الصلاحيات",
       });
     }
   } catch (error) {
     console.log(error);
     return NextResponse.json({
       success: false,
-      message: "something went wrong please try again",
+      message: "حدث خطاء ما الرجاء المحاولة لاحقا",
     });
   }
 }

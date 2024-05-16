@@ -62,17 +62,15 @@ export default function Orders() {
                     {allOrdersForUser.map((item) => (
                       <li
                         key={item._id}
-                        className="bg-gray-200 shadow p-5 flex flex-col space-y-3 py-6 text-left overflow-x-auto"
+                        className="bg-gray-200 shadow p-5 flex flex-col space-y-3 py-6 text-left overflow-x-auto hover:bg-gray-300 cursor-pointer transition-all duration-300"
                       >
-                        <div className="flex">
-                          <h1 className="font-bold text-lg mb-3 flex-1">
+                        <div className="flex items-center justify-between ">
+                          <h1 className=" text-[12px] font-semibold">
                             # الطلب : {item._id}
                           </h1>
                           <div className="flex items-center">
-                            <p className="mr-3 text-sm font-medium text-gray-900">
-                              اجمالي المبلغ المدفوع
-                            </p>
-                            <p className="mr-3 text-2xl  font-semibold text-gray-900">
+                            <p className="mr-3 text-sm text-gray-900">المبلغ</p>
+                            <p className="mr-1 text-lg  font-semibold text-gray-900">
                               {" "}
                               د.ك {item.totalPrice}
                             </p>

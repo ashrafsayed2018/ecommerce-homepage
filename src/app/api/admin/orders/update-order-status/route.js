@@ -57,7 +57,7 @@ export async function PUT(req) {
     console.log(error);
     return NextResponse.json({
       success: false,
-      message: "something went wrong please try again later",
+      message: "حدث خطاء ما الرجاء المحاولة لاحقا later",
     });
   }
 }

@@ -32,7 +32,7 @@ export async function getAllAdminProducts() {
   } catch (error) {
     return NextResponse.json({
       success: false,
-      message: "something went wrong please try again later",
+      message: "حدث خطاء ما الرجاء المحاولة لاحقا later",
     });
   }
 }
@@ -55,7 +55,7 @@ export async function updateProductService(formData) {
   } catch (error) {
     return NextResponse.json({
       success: false,
-      message: "something went wrong please try again later",
+      message: "حدث خطاء ما الرجاء المحاولة لاحقا later",
     });
   }
 }
@@ -79,7 +79,7 @@ export async function deleteProductService(id) {
   } catch (error) {
     return NextResponse.json({
       success: false,
-      message: "something went wrong please try again later",
+      message: "حدث خطاء ما الرجاء المحاولة لاحقا later",
     });
   }
 }

@@ -1,8 +1,9 @@
 "use client";
 
+import Loader from "@/app/components/Loader";
 import ToastNotification from "@/app/components/Notification";
 import { GlobalContext } from "@/context";
-import { getAllUserOrder } from "@/services/order";
+import { getAllUserOrder, updateOrderStatus } from "@/services/order";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
 import { PulseLoader } from "react-spinners";
@@ -11,6 +12,8 @@ import { toast } from "react-toastify";
 export default function Orders() {
   const {
     user,
+    loader,
+    setLoader,
     pageLoader,
     setPageLoader,
     allOrdersForUser,
@@ -22,7 +25,6 @@ export default function Orders() {
   async function extractAllOrders() {
     setPageLoader(true);
     const res = await getAllUserOrder(user?.id);
-    console.log(res);
     if (res.success) {
       setPageLoader(false);
       setAllOrdersForUser(res.data);
@@ -32,7 +34,16 @@ export default function Orders() {
       toast.error(res.message);
     }
   }
+  async function handleUpdateOrderStatus(item) {
+    const response = await updateOrderStatus({
+      ...item,
+      isProcessing: false,
+    });
 
+    if (response.success) {
+      extractAllOrders();
+    }
+  }
   useEffect(() => {
     if (user !== null) extractAllOrders();
   }, [user]);
@@ -62,18 +73,17 @@ export default function Orders() {
                     {allOrdersForUser.map((item) => (
                       <li
                         key={item._id}
-                        className="bg-gray-200 shadow p-5 flex flex-col space-y-3 py-6 text-left overflow-x-auto"
+                        className="bg-gray-200 shadow p-5 flex flex-col space-y-3 py-6 text-left overflow-x-auto hover:bg-gray-300 cursor-pointer transition-all duration-300"
                       >
-                        <div className="flex">
-                          <h1 className="font-bold text-lg mb-3 flex-1">
-                            #order: {item._id}
-                          </h1>
+                        <div className="flex items-center justify-between">
+                          <h1 className=" text-sm">#الطلب : {item._id}</h1>
                           <div className="flex items-center">
                             <p className="mr-3 text-sm font-medium text-gray-900">
-                              Total paid amount
+                              اجمالي المبلغ :
                             </p>
-                            <p className="mr-3 text-2xl  font-semibold text-gray-900">
-                              ${item.totalPrice}
+                            <p className="mr-1 text-lg   text-gray-900">
+                              {" "}
+                              kwd {item.totalPrice}
                             </p>
                           </div>
                         </div>
@@ -93,16 +103,30 @@ export default function Orders() {
                           ))}
                         </div>
                         <div className="flex gap-5">
-                          <button className="disabled:opacity-50 mt-5 mr-5  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide">
-                            {item.isProcessing
-                              ? "Order is Processing"
-                              : "Order is delivered"}
+                          <button
+                            onClick={() => handleUpdateOrderStatus(item)}
+                            disabled={!item.isProcessing}
+                            className="disabled:opacity-50 mt-5 mr-5  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+                          >
+                            {loader &&
+                            loader.loading &&
+                            loader.id === item._id ? (
+                              <Loader
+                                text={"جاري تحديث حالة الطلب"}
+                                color={"#ffffff"}
+                                loading={pageLoader && pageLoader.loading}
+                              />
+                            ) : item.isProcessing ? (
+                              "الطلب قيد التنفيذ"
+                            ) : (
+                              "الطلب تحت التنفيذ"
+                            )}
                           </button>
                           <button
                             onClick={() => router.push(`/orders/${item._id}`)}
                             className=" mt-5 mr-5  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
                           >
-                            View Order Details
+                            تفاصيل الطلب
                           </button>
                         </div>
                       </li>

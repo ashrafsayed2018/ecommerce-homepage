@@ -139,6 +139,7 @@ export default function CheckoutPage() {
   useEffect(() => {
     if (orderSuccess) {
       setTimeout(() => {
+        localStorage.removeItem("cartItems");
         router.push("/orders");
       }, 2000);
     }

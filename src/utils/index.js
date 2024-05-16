@@ -27,6 +27,11 @@ export const NavbarLinks = [
     name: "اتصل بنا",
     href: "/",
   },
+  {
+    id: 3,
+    name: "طلباتي",
+    href: "/orders",
+  },
 ];
 
 export const ProductItems = [
