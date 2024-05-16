@@ -12,6 +12,7 @@ import { PulseLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import ToastNotification from "../components/Notification";
+export const dynamic = "force-dynamic";
 export default function CheckoutPage() {
   const { user, cartItems, address, setAddress } = useContext(GlobalContext);
   const [isPaymentProcessing, setIsPaymentProcessing] = useState(false);
