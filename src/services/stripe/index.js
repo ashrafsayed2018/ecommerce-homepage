@@ -4,7 +4,7 @@ const { BASE_API_URL } = require("@/utils/constants");
 
 export async function callStripeSession(formData) {
   try {
-    const response = await fetch(`${BASE_API_URL}/api/stripe/`, {
+    const response = await fetch(`${BASE_API_URL}/api/stripe`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

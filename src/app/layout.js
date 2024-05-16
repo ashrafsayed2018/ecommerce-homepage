@@ -4,6 +4,7 @@ import GlobalState from "@/context";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FixedContact from "./components/FixedContact";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <GlobalState>
           <Navbar />
-          {children}
+          <Suspense fallback={<div>جاري تحميل...</div>}>{children}</Suspense>
           <Footer />
           <FixedContact />
         </GlobalState>

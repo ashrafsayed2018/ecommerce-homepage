@@ -1,7 +1,7 @@
 import { AuthUser } from "@/authUser/AuthUser";
 import connectToDb from "@/database";
 import { NextResponse } from "next/server";
-
+import jwt from "jsonwebtoken";
 export const dynamic = "force-dynamic";
 
 const stripe = require("stripe")("sk_test_0gCS2wDOsTWp0XEiTpWAPewe00VQyZUeOP");
