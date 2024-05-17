@@ -1,7 +1,6 @@
 import { AuthUser } from "@/authUser/AuthUser";
 import connectToDb from "@/database";
 import { NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
 export const dynamic = "force-dynamic";
 
 const stripe = require("stripe")("sk_test_0gCS2wDOsTWp0XEiTpWAPewe00VQyZUeOP");
@@ -16,8 +15,8 @@ export async function POST(req) {
         payment_method_types: ["card"],
         line_items: response,
         mode: "payment",
-        success_url: "http://localhost:3000/checkout" + "?status=success",
-        cancel_url: "http://localhost:3000/checkout" + "?status=cancel",
+        success_url: `${BASE_API_URL}/checkout?status=success`,
+        cancel_url: `${BASE_API_URL}/checkout?status=cancel`,
       });
 
       return NextResponse.json({
