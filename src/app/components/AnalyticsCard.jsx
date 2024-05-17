@@ -1,4 +1,6 @@
-export default function AnalyticsCard({ title, value, color, percentage }) {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+export default function AnalyticsCard({ title, value, color, icon }) {
   return (
     <div className="analytics-card bg-white p-4 rounded-lg mt-4 shadow-xl cursor-pointer transition-all duration-300 ease-in hover:shadow-none">
       <div className="status flex items-center justify-between">
@@ -6,7 +8,8 @@ export default function AnalyticsCard({ title, value, color, percentage }) {
           <h3 className="text-lg mb-2">{title}</h3>
           <h1 className="text-xl">{value}</h1>
         </div>
-        <div className="progress relative w-24 h-24 rounded-full">
+        <FontAwesomeIcon icon={icon} color={color} size="2x" />
+        {/* <div className="progress relative w-24 h-24 rounded-full">
           <svg
             width="100%"
             height="100%"
@@ -29,7 +32,7 @@ export default function AnalyticsCard({ title, value, color, percentage }) {
           <div className="percentage w-full h-full absolute top-0 flex items-center justify-center ">
             <h1>{percentage}</h1>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -12,6 +12,8 @@ export async function GET(req) {
 
     if (authanticatedUser?.role == "admin") {
       const getAllOrders = await Order.find({})
+        .sort({ createdAt: -1 })
+        .limit(5)
         .populate("orderItems.product")
         .populate("user");
       if (getAllOrders) {

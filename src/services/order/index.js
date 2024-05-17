@@ -73,6 +73,25 @@ export async function getAllUsersOrders() {
   }
 }
 
+// get latest five orders for admin only
+export async function getLatestOrders() {
+  try {
+    const response = await fetch(
+      `${BASE_API_URL}/api/admin/orders/get-latest-orders`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${Cookies.get("token")}`,
+        },
+      }
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
 // get update order for admin only
 
 export async function updateOrderStatus(order) {

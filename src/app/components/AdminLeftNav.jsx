@@ -1,8 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import { useContext, useEffect, useState } from "react";
+import { GlobalContext } from "@/context";
+import { createRandomAvatar } from "@/helpers/createRandomAvatar";
 
 export default function AdminLeftNav({ isAsideOpen, setIsAsideOpen }) {
+  const [avatar, setAvatar] = useState("");
+  const { user } = useContext(GlobalContext);
+  useEffect(() => {
+    createRandomAvatar(user, setAvatar);
+  }, []);
   return (
     <div className="left-section mt-6">
       <nav className="flex justify-end gap-8">
@@ -26,17 +34,19 @@ export default function AdminLeftNav({ isAsideOpen, setIsAsideOpen }) {
           )}
         </button>
 
-        <div className="profile flex gap-8 text-right">
+        <div className="w-full profile flex gap-8  items-center justify-between">
           <div className="info">
             <p>
-              مرحبا <b>محمد</b>
+              مرحبا <b>{user.name}</b>
             </p>
-            <small className="text-muted">مدير</small>
+            <p>
+              الصلاحية <b>{user.role}</b>
+            </p>
           </div>
           <div className="profile-picture w-12 h-12 rounded-full">
             <img
-              src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt=""
+              src={avatar}
+              alt={user.name}
               className="w-full h-full rounded-full object-cover max-w-full"
             />
           </div>
@@ -46,11 +56,11 @@ export default function AdminLeftNav({ isAsideOpen, setIsAsideOpen }) {
       <div className="user-profile flex justify-center text-center mt-4 bg-white p-4 rounded-lg shadow-xl cursor-pointer transition-all duration-300 ease-in hover:shadow-none">
         <div className="logo">
           <img
-            src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt=""
+            src={avatar}
+            alt={user.name}
             className="w-44 max-h-44 mb-3 rounded-full object-cover"
           />
-          <h2 className="mb-[4px]">تهاني السعيدي</h2>
+          <h2 className="mb-[4px]">{user.name}</h2>
           <p>متجر ملابس العباية في الكويت</p>
         </div>
       </div>

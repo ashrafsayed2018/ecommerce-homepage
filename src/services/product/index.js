@@ -4,14 +4,17 @@ import { NextResponse } from "next/server";
 
 export async function addNewProductService(formData) {
   try {
-    const response = await fetch(`${BASE_API_URL}/api/admin/add-product`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${Cookies.get("token")}`,
-      },
-      body: JSON.stringify(formData),
-    });
+    const response = await fetch(
+      `${BASE_API_URL}/api/admin/products/add-product`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${Cookies.get("token")}`,
+        },
+        body: JSON.stringify(formData),
+      }
+    );
     const data = await response.json();
     return data;
   } catch (error) {
@@ -23,10 +26,13 @@ export async function addNewProductService(formData) {
 
 export async function getAllAdminProducts() {
   try {
-    const response = await fetch(`${BASE_API_URL}/api/admin/all-products`, {
-      method: "GET",
-      cache: "no-store",
-    });
+    const response = await fetch(
+      `${BASE_API_URL}/api/admin/products/all-products`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
     const data = await response.json();
     return data;
   } catch (error) {
@@ -41,14 +47,17 @@ export async function getAllAdminProducts() {
 
 export async function updateProductService(formData) {
   try {
-    const response = await fetch(`${BASE_API_URL}/api/admin/update-product`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${Cookies.get("token")}`,
-      },
-      body: JSON.stringify(formData),
-    });
+    const response = await fetch(
+      `${BASE_API_URL}/api/admin/products/update-product`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${Cookies.get("token")}`,
+        },
+        body: JSON.stringify(formData),
+      }
+    );
 
     const data = await response.json();
     return data;
@@ -64,7 +73,7 @@ export async function updateProductService(formData) {
 export async function deleteProductService(id) {
   try {
     const response = await fetch(
-      `${BASE_API_URL}/api/admin/delete-product?id=${id}`,
+      `${BASE_API_URL}/api/admin/products/delete-product?id=${id}`,
       {
         method: "DELETE",
         headers: {

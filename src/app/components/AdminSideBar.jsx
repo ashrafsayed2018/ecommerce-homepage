@@ -21,7 +21,7 @@ export default function AdminSideBar({ isAsideOpen, setIsAsideOpen }) {
       className={`h-screen ${isAsideOpen ? "block" : "hidden md:block"} block`}
     >
       <div className="toggle flex items-center justify-between ">
-        <div className="logo flex items-center justify-between gap-2">
+        <Link href="/" className="logo flex items-center justify-between gap-2">
           <img
             src="/images/tahani_logo.jpg"
             alt="logo"
@@ -30,7 +30,7 @@ export default function AdminSideBar({ isAsideOpen, setIsAsideOpen }) {
           <h2 className="hidden sm:block">
             تهاني <span className="text-red-500">السعيدي</span>
           </h2>
-        </div>
+        </Link>
         <div
           className="close md:hidden pl-4"
           id="colse-btn"
