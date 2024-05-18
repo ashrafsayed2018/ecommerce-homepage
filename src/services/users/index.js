@@ -1,5 +1,25 @@
 import { BASE_API_URL } from "@/utils/constants";
+import Cookies from "js-cookie";
 
+export async function getUserByIdService() {
+  try {
+    const response = await fetch(
+      `${BASE_API_URL}/api/admin/users/get-user-by-id`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${Cookies.get("token")}`,
+        },
+      }
+    );
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
 export async function getAllUsersService() {
   try {
     const response = await fetch(
@@ -7,7 +27,6 @@ export async function getAllUsersService() {
     );
 
     const data = await response.json();
-    console.log(data, "from users service");
     return data;
   } catch (error) {
     console.log(error);

@@ -9,7 +9,7 @@ connectToDb();
 
 export async function GET(req) {
   try {
-    const authenticatedUser = AuthUser(req);
+    const authenticatedUser = await AuthUser(req);
     if (!authenticatedUser) {
       return NextResponse.json({
         success: false,

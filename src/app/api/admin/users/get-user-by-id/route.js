@@ -10,17 +10,18 @@ connectToDb();
 export async function GET(req) {
   try {
     const authenticatedUser = await AuthUser(req);
+
     if (!authenticatedUser) {
       return NextResponse.json({
         success: false,
         message: "عفوا ليس لديك صلاحية للدخول",
       });
     } else {
-      const users = await User.find({});
-      if (users) {
+      const user = await User.findById({ _id: authenticatedUser.id });
+      if (user) {
         return NextResponse.json({
           success: true,
-          data: users,
+          data: user,
         });
       } else {
         return NextResponse.json({

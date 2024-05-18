@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FixedContact from "./components/FixedContact";
 import { Suspense } from "react";
+import { PulseLoader } from "react-spinners";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ar" dir="rtl">
       <body className={inter.className}>
-        <Suspense fallback={<div>تحميل ...</div>}>
+        <Suspense
+          fallback={
+            <div className="h-screen w-full flex items-center justify-center">
+              <PulseLoader color="#000" loading={true} size={10} />
+            </div>
+          }
+        >
           <GlobalState>
             <Navbar />
             {children}
