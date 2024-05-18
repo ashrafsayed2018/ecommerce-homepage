@@ -18,7 +18,7 @@ const initialFormData = {
   description: "",
   category: "women",
   sizes: [],
-  deliveryInfo: "",
+  deliveryInfo: "free",
   onSale: "no",
   imageUrl: "",
   priceDrop: 0,
@@ -27,15 +27,31 @@ export default function AddProduct() {
   const { loader, setLoader } = useContext(GlobalContext);
   const router = useRouter();
   const [formData, setFormData] = useState(initialFormData);
+  //   const extractedImageUrl = await helperForUploadImageToFirebase(
+  //     event.target.files[0]
+  //   );
+  //   if (extractedImageUrl != "") {
+  //     setFormData({
+  //       ...formData,
+  //       imageUrl: extractedImageUrl,
+  //     });
+  //   }
+  // };
+
   const changeImage = async (event) => {
-    const extractedImageUrl = await helperForUploadImageToFirebase(
-      event.target.files[0]
-    );
-    if (extractedImageUrl != "") {
-      setFormData({
-        ...formData,
-        imageUrl: extractedImageUrl,
-      });
+    try {
+      const extractedImageUrl = await helperForUploadImageToFirebase(
+        event.target.files[0]
+      );
+      if (extractedImageUrl !== "") {
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          imageUrl: extractedImageUrl,
+        }));
+      }
+    } catch (error) {
+      console.error("خطاء في تغيير الصورة:", error);
+      // Handle the error, e.g., display an error message to the user
     }
   };
 
@@ -70,7 +86,7 @@ export default function AddProduct() {
       description.trim() !== "" &&
       category.trim() != [] &&
       sizes.length > 0 &&
-      deliveryInfo.trim() !== "" &&
+      deliveryInfo.trim() != [] &&
       onSale.trim() !== "" &&
       imageUrl.trim() !== "" &&
       priceDrop.length !== 0
@@ -93,6 +109,7 @@ export default function AddProduct() {
       }
     }
   }
+  console.log(isFormValid());
   return (
     <div className="w-full m-0 mt-5 relative">
       <div className="flex flex-col justify-start items-start p-10 relative shadow-xl rounded-xl bg-white">

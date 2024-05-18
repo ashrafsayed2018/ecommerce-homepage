@@ -303,7 +303,17 @@ export const adminAddProductformControls = [
     type: "text",
     placeholder: "معلومات التوصيل",
     label: "معلومات التوصيل",
-    componentType: "input",
+    componentType: "select",
+    options: [
+      {
+        id: "free",
+        label: "مجاني",
+      },
+      {
+        id: "paid",
+        label: "مدفوع",
+      },
+    ],
   },
   {
     id: "onSale",
