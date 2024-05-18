@@ -12,9 +12,11 @@ import { PulseLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import ToastNotification from "../components/Notification";
+import Loader from "../components/Loader";
 export const dynamic = "force-dynamic";
 export default function CheckoutPage() {
-  const { user, cartItems, address, setAddress } = useContext(GlobalContext);
+  const { user, cartItems, address, setAddress, loader, setLoader } =
+    useContext(GlobalContext);
   const [isPaymentProcessing, setIsPaymentProcessing] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
 
@@ -51,10 +53,14 @@ export default function CheckoutPage() {
 
     if (response.error) {
       toast.error(response.error.message);
+      setLoader(false);
+
       return;
     } else {
       const userAddress = await getAddress(user.id);
       const addressData = userAddress.data;
+      setLoader(true);
+
       const { fullName, country, city, address, postalCode } = addressData;
 
       const checkoutFormData = {
@@ -159,7 +165,6 @@ export default function CheckoutPage() {
       </div>
     );
   }
-
   if (orderSuccess) {
     return (
       <Suspense fallback={<PulseLoader color="black" size={15} />}>
@@ -292,8 +297,14 @@ export default function CheckoutPage() {
                 >
                   {Object.keys(address).length == 0 ? (
                     <Link href="/account">اضف العنوان</Link>
+                  ) : loader ? (
+                    <Loader
+                      text={"جاري التحميل"}
+                      color={"#ffffff"}
+                      size={"10px"}
+                    />
                   ) : (
-                    "انهاء الطلب"
+                    "تاكيد الطلب"
                   )}
                 </button>
               </div>

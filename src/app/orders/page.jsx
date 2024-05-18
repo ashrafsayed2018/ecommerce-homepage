@@ -92,7 +92,11 @@ export default function Orders() {
                           ))}
                         </div>
                         <div className="flex gap-5">
-                          <button className="disabled:opacity-50 mt-5 mr-5  inline-block   text-center p-3 rounded-xl my-4 mx-auto bg-blue-700 text-white">
+                          <button
+                            className={`disabled:opacity-50 mt-5 mr-5  inline-block   text-center p-3 rounded-xl my-4 mx-auto ${
+                              item.isProcessing ? "bg-red-700" : "bg-green-700"
+                            } text-white`}
+                          >
                             {item.isProcessing
                               ? "الطلب في الانتظار"
                               : "الطلب تحت التوصيل"}
