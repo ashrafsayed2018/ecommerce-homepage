@@ -1,5 +1,6 @@
 import { AuthUser } from "@/authUser/AuthUser";
 import connectToDb from "@/database";
+import { BASE_API_URL } from "@/utils/constants";
 import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 
