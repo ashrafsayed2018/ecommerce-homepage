@@ -1,5 +1,7 @@
 import {
+  faFacebook,
   faInstagram,
+  faPinterest,
   faSnapchat,
   faTiktok,
   faWhatsapp,
@@ -9,8 +11,8 @@ import {
   faBoxOpen,
   faCog,
   faDashboard,
+  faGlobe,
   faList,
-  faList12,
   faPhone,
   faUserAlt,
 } from "@fortawesome/free-solid-svg-icons";
@@ -97,7 +99,7 @@ export const SocialMediaLinks = [
   {
     id: 3,
     name: "snapchat",
-    href: "https://www.snapchat.com/tahanialsaeedi1",
+    href: "https://www.snapchat.com/add/tahanialsaeedi1?share_id=7-m5r_SLSFia90QpfMJvAg&locale=ar_KW",
     icon: <FontAwesomeIcon icon={faSnapchat} />,
   },
   {
@@ -105,6 +107,24 @@ export const SocialMediaLinks = [
     name: "tiktok",
     href: "https://www.tiktok.com/@tahanialsaeedi_?_t=8m19Xypyfuz&_r=1",
     icon: <FontAwesomeIcon icon={faTiktok} />,
+  },
+  {
+    id: 5,
+    name: "facebook",
+    href: "https://www.facebook.com/profile.php?id=100084140913689&mibextid=LQQJ4d",
+    icon: <FontAwesomeIcon icon={faFacebook} />,
+  },
+  {
+    id: 6,
+    name: "pintrest",
+    href: "https://www.pinterest.com/tahanialsaeedi_/?invite_code=bbecfe07113d4f1e975d6b15f3fa6523&sender=963418682694933576",
+    icon: <FontAwesomeIcon icon={faPinterest} />,
+  },
+  {
+    id: 7,
+    name: "reachme",
+    href: "https://reach.link/abati_boutique?fbclid=PAAabg8UBEbwOD8RHQthxCFnqMjDCdMzY1wWApJIzstg3u5CInDSPH9O2GltA_aem_AbjC2efq0bX9781iA7-i0UJDCF4DFEmcNPLch6qdBLP0s4nqFaQNtqX6jYaqSDpyyB4",
+    icon: <FontAwesomeIcon icon={faGlobe} />,
   },
 ];
 
