@@ -34,6 +34,7 @@ export default function ProductsPage() {
     if (response.success) {
       // setLoader({ loading: false, id: "" });
       toast.success(response.message);
+      router.refresh();
       getProducts();
     } else {
       // setLoader({ loading: false, id: "" });
@@ -43,7 +44,7 @@ export default function ProductsPage() {
   useEffect(() => {
     getProducts();
   }, []);
-
+  console.log(products, "products from products page");
   return (
     <div className="mt-20">
       <h2 className="text-center mb-2 text-lg md:text-2xl">صفحة المنتجات</h2>

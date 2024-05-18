@@ -3,10 +3,8 @@
 import { GlobalContext } from "@/context";
 import { helperForUploadImageToFirebase } from "@/helpers/uploadImageToFirebase";
 import { addNewProductService } from "@/services/product";
-
 import { useContext, useState } from "react";
 import { toast } from "react-toastify";
-
 import { useRouter } from "next/navigation";
 import InputComponent from "@/app/components/formElements/inputComponent";
 import ToastNotification from "@/app/components/Notification";
