@@ -44,10 +44,8 @@ export default function Settings() {
         const response = await getSettingsService();
 
         if (response.success && response.data) {
-          console.log(response.data);
           setHasSettings(Object.keys(response.data).length > 0);
           setSettingsFormData(response.data);
-          console.log(settingsFormData);
         }
       } catch (error) {
         console.error("خطاء في تحميل الاعدادات:", error);
@@ -119,7 +117,6 @@ export default function Settings() {
       siteDescription,
       logoUrl,
     });
-    console.log(response, "from updaing user sittings");
     if (response.success) {
       setLoader({ loading: false, id: "updateSitting" });
       toast.success(response.message);

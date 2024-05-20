@@ -23,6 +23,7 @@ export async function GET(req) {
       const extractAllCartItems = await Cart.find({ userID: id }).populate(
         "productID"
       );
+      console.log(extractAllCartItems, "all cart items");
       if (extractAllCartItems) {
         return NextResponse.json({
           success: true,

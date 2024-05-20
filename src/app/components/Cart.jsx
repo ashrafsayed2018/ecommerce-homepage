@@ -22,77 +22,82 @@ export default function Cart({ cartItems = [], handleDeleteItem, loader }) {
                   <div>
                     {/* card list */}
                     <ul className="my-8">
-                      {cartItems.map((cartItem, index) => (
-                        <div key={index}>
-                          <li className="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0">
-                            <div className="shrink-0">
-                              <img
-                                src={cartItem.productID.imageUrl}
-                                alt={cartItem.productID.name}
-                                className="w-24 h-24 rounded-lg max-w-full object-cover"
-                              />
-                            </div>
-                            <div className="flex flex-1 flex-col justify-between">
-                              <div className="sm:col-gap-5 sm:grid sm:grid-cols-2">
-                                <div className="pr-8 sm:pr-4">
-                                  <p className="text-base font-semibold text-gray-900">
-                                    {cartItem.productID.name}
-                                  </p>
-                                </div>
-                                <div className="mt-4 flex gap-3 items-end justify-between sm:mt-0 sm:items-start sm:justify-end">
-                                  <p className="shrink-0 w-20 text-basetext-gray-900 sm:order-1 sm:text-right sm:ml-8">
-                                    {" "}
-                                    kwd{" "}
-                                    {getPriceAfterDiscount(cartItem.productID)}
-                                  </p>
-                                  <button
-                                    type="button"
-                                    className="font-medium text-red-700 sm:order-2"
-                                    onClick={() =>
-                                      handleDeleteItem(cartItem._id)
-                                    }
-                                  >
-                                    {loader &&
-                                    loader.loading &&
-                                    loader.id === cartItem._id ? (
-                                      <Loader
-                                        loading="جاري الحذف"
-                                        color="red"
-                                        size={20}
-                                      />
-                                    ) : (
-                                      "حذف المنتج"
-                                    )}
-                                  </button>
+                      {cartItems.map((cartItem, index) => {
+                        return (
+                          <div key={index}>
+                            <li className="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0">
+                              <div className="shrink-0">
+                                <img
+                                  src={cartItem.productID?.imageUrl}
+                                  alt={cartItem.productID?.name}
+                                  className="w-24 h-24 rounded-lg max-w-full object-cover"
+                                />
+                              </div>
+                              <div className="flex flex-1 flex-col justify-between">
+                                <div className="sm:col-gap-5 sm:grid sm:grid-cols-2">
+                                  <div className="pr-8 sm:pr-4">
+                                    <p className="text-base font-semibold text-gray-900">
+                                      {cartItem.productID?.name}
+                                    </p>
+                                  </div>
+                                  <div className="mt-4 flex gap-3 items-end justify-between sm:mt-0 sm:items-start sm:justify-end">
+                                    <p className="shrink-0 w-20 text-basetext-gray-900 sm:order-1 sm:text-right sm:ml-8">
+                                      {" "}
+                                      kwd{" "}
+                                      {cartItem.productID &&
+                                        getPriceAfterDiscount(
+                                          cartItem.productID
+                                        )}
+                                    </p>
+                                    <button
+                                      type="button"
+                                      className="font-medium text-red-700 sm:order-2"
+                                      onClick={() =>
+                                        handleDeleteItem(cartItem._id)
+                                      }
+                                    >
+                                      {loader &&
+                                      loader.loading &&
+                                      loader.id === cartItem._id ? (
+                                        <Loader
+                                          loading="جاري الحذف"
+                                          color="red"
+                                          size={20}
+                                        />
+                                      ) : (
+                                        "حذف المنتج"
+                                      )}
+                                    </button>
+                                  </div>
                                 </div>
                               </div>
+                            </li>
+                            <div>
+                              <h3 className="text-xl mb-4 text-gray-800">
+                                مقاسات المنتج
+                              </h3>
+                              <ul className="grid grid-cols-4 gap-6 bg-gray-200 p-2 rounded-xl">
+                                <li className="flex gap-4 text-sm">
+                                  <span>حجم الصدر</span>
+                                  <span>{cartItem.chestSize}</span>
+                                </li>
+                                <li className="flex gap-4 text-sm">
+                                  <span>حجم الكتف</span>
+                                  <span>{cartItem.shoulderSize}</span>
+                                </li>
+                                <li className="flex gap-4 text-sm">
+                                  <span>حجم الكم</span>
+                                  <span>{cartItem.sleeveSize}</span>
+                                </li>
+                                <li className="flex gap-4 text-sm">
+                                  <span>الطول</span>
+                                  <span>{cartItem.fullLength}</span>
+                                </li>
+                              </ul>
                             </div>
-                          </li>
-                          <div>
-                            <h3 className="text-xl mb-4 text-gray-800">
-                              مقاسات المنتج
-                            </h3>
-                            <ul className="grid grid-cols-4 gap-6 bg-gray-200 p-2 rounded-xl">
-                              <li className="flex gap-4 text-sm">
-                                <span>حجم الصدر</span>
-                                <span>{cartItem.chestSize}</span>
-                              </li>
-                              <li className="flex gap-4 text-sm">
-                                <span>حجم الكتف</span>
-                                <span>{cartItem.shoulderSize}</span>
-                              </li>
-                              <li className="flex gap-4 text-sm">
-                                <span>حجم الكم</span>
-                                <span>{cartItem.sleeveSize}</span>
-                              </li>
-                              <li className="flex gap-4 text-sm">
-                                <span>الطول</span>
-                                <span>{cartItem.fullLength}</span>
-                              </li>
-                            </ul>
                           </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </ul>
                     <div className="mt-6 border-t border-b py-2">
                       <div className="flex items-center justify-between">

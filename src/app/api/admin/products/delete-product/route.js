@@ -2,6 +2,7 @@ import connectToDb from "@/database";
 import { AuthUser } from "@/authUser/AuthUser";
 import Product from "@/models/product";
 import { NextResponse } from "next/server";
+import Cart from "@/models/cart";
 
 export const dynamic = "force-dynamic";
 
@@ -20,7 +21,7 @@ export async function DELETE(req) {
       } else {
         // delete product
         const deletedProduct = await Product.deleteOne({ _id: id });
-        console.log(deletedProduct, "from delete route");
+        await Cart.deleteMany({ productID: id });
         if (deletedProduct) {
           return NextResponse.json({
             success: true,
