@@ -28,7 +28,7 @@ export default function ProductsPage() {
   }
 
   async function handleDeleteProduct(id) {
-    // setLoader({ loading: true, id: id });
+    console.log(id);
     const response = await deleteProductService(id);
 
     if (response.success) {

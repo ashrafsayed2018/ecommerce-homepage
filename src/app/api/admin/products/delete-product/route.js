@@ -18,7 +18,9 @@ export async function DELETE(req) {
           message: "المنتج غير موجود",
         });
       } else {
-        const deletedProduct = await Product.findOneAndDelete(id);
+        // delete product
+        const deletedProduct = await Product.deleteOne({ _id: id });
+        console.log(deletedProduct, "from delete route");
         if (deletedProduct) {
           return NextResponse.json({
             success: true,
