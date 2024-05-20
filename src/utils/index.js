@@ -20,6 +20,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const NavbarLinks = [
   {
+    id: 0,
+    name: "الرئيسية",
+    href: "/",
+  },
+  {
     id: 1,
     name: "معلومات عنا",
     href: "/",
