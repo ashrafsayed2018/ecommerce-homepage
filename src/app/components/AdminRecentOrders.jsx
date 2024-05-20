@@ -3,9 +3,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import ToastNotification from "./Notification";
+import { useRouter } from "next/navigation";
 
 export default function AdminRecentOrders() {
   const [recentOrders, setRecentOrders] = useState([]);
+  const router = useRouter();
   async function getRecentOrders() {
     const response = await getLatestOrders();
     if (response.success) {
@@ -35,7 +37,11 @@ export default function AdminRecentOrders() {
             </thead>
             <tbody>
               {recentOrders.map((order) => (
-                <tr key={order._id}>
+                <tr
+                  key={order._id}
+                  onClick={() => router.push(`/orders/${order._id}`)}
+                  className="cursor-pointer"
+                >
                   <td className="h-10 border-b-2 border-gray-200 text-gray-600">
                     {order.user.name}
                   </td>

@@ -1,5 +1,5 @@
 "use client";
-import { getAllUsersService } from "@/services/users";
+import { getAllUsersService, getRecentUsersService } from "@/services/users";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 

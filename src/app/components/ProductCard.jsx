@@ -12,7 +12,8 @@ export default function ProductCard({ product }) {
             alt={product.description}
             width={400}
             height={400}
-            priority={true}
+            placeholder="blur"
+            blurDataURL={product.imageUrl}
             className="w-full h-[600px] sm:h-screen"
           />
         </div>
@@ -25,7 +26,7 @@ export default function ProductCard({ product }) {
           </p>
         </div>
       </Link>
-      <CartButton product={product} />
+      {/* <CartButton product={product} /> */}
     </div>
   );
 }

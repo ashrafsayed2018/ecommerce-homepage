@@ -27,21 +27,11 @@ export default function AddProduct() {
   const { loader, setLoader } = useContext(GlobalContext);
   const router = useRouter();
   const [formData, setFormData] = useState(initialFormData);
-  //   const extractedImageUrl = await helperForUploadImageToFirebase(
-  //     event.target.files[0]
-  //   );
-  //   if (extractedImageUrl != "") {
-  //     setFormData({
-  //       ...formData,
-  //       imageUrl: extractedImageUrl,
-  //     });
-  //   }
-  // };
-
   const changeImage = async (event) => {
     try {
       const extractedImageUrl = await helperForUploadImageToFirebase(
-        event.target.files[0]
+        event.target.files[0],
+        "product-images"
       );
       if (extractedImageUrl !== "") {
         setFormData((prevFormData) => ({
@@ -51,10 +41,8 @@ export default function AddProduct() {
       }
     } catch (error) {
       console.error("خطاء في تغيير الصورة:", error);
-      // Handle the error, e.g., display an error message to the user
     }
   };
-
   function handleTileClick(currentItem) {
     let copySizes = [...formData.sizes];
     const index = copySizes.findIndex((item) => item.id === currentItem.id);
@@ -109,7 +97,6 @@ export default function AddProduct() {
       }
     }
   }
-  console.log(isFormValid());
   return (
     <div className="w-full m-0 mt-5 relative">
       <div className="flex flex-col justify-start items-start p-10 relative shadow-xl rounded-xl bg-white">

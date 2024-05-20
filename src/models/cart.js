@@ -1,3 +1,4 @@
+import { number } from "joi";
 import mongoose from "mongoose";
 
 const CartSchema = new mongoose.Schema(
@@ -10,6 +11,10 @@ const CartSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Product",
     },
+    chestSize: { type: Number, required: true },
+    shoulderSize: { type: Number, required: true },
+    sleeveSize: { type: Number, required: true },
+    fullLength: { type: Number, required: true },
     quantity: {
       type: Number,
       required: true,

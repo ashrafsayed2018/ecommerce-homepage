@@ -208,6 +208,54 @@ export const AdminLinks = [
   },
 ];
 
+export const SettingsFormControls = [
+  {
+    id: "siteName",
+    type: "text",
+    placeholder: "اسم الموقع",
+    label: "اسم الموقع",
+    componentType: "input",
+  },
+];
+
+export const UpdateUserInfoFormControls = [
+  {
+    id: "name",
+    type: "text",
+    placeholder: "ادخل اسمك",
+    label: "الاسم",
+    componentType: "input",
+  },
+  {
+    id: "email",
+    type: "email",
+    placeholder: "البريد الالكتروني",
+    label: "البريد الالكتروني",
+    componentType: "input",
+  },
+  {
+    id: "oldPassword",
+    type: "password",
+    placeholder: "كلمة المرور القديمة",
+    label: "كلمة المرور القديمة",
+    componentType: "input",
+  },
+  {
+    id: "password",
+    type: "password",
+    placeholder: "كلمة المرور",
+    label: "كلمة المرور",
+    componentType: "input",
+  },
+  {
+    id: "confirmPassword",
+    type: "password",
+    placeholder: " تأكيد كلمة المرور",
+    label: "تأكيد كلمة المرور",
+    componentType: "input",
+  },
+];
+
 export const RegistrationFormControls = [
   {
     id: "name",
@@ -306,11 +354,11 @@ export const adminAddProductformControls = [
     componentType: "select",
     options: [
       {
-        id: "free",
+        id: "مجاني",
         label: "مجاني",
       },
       {
-        id: "paid",
+        id: "مدفوع",
         label: "مدفوع",
       },
     ],
@@ -335,8 +383,39 @@ export const adminAddProductformControls = [
   {
     id: "priceDrop",
     type: "number",
-    placeholder: "نسبة الخصم",
+    placeholder: " الخصم",
     label: "نسبة الخصم",
+    componentType: "input",
+  },
+];
+
+export const ProductDimensionsformControls = [
+  {
+    id: "chestSize",
+    type: "number",
+    placeholder: "أدخل حجم الصدر هنا بالبوصة",
+    label: "حجم الصدر",
+    componentType: "input",
+  },
+  {
+    id: "shoulderSize",
+    type: "number",
+    placeholder: "أدخل حجم الكتف هنا بالبوصة",
+    label: "حجم الكتف",
+    componentType: "input",
+  },
+  {
+    id: "sleeveSize",
+    type: "number",
+    placeholder: "أدخل حجم الأكمام هنا بالبوصة",
+    label: "حجم الكم",
+    componentType: "input",
+  },
+  {
+    id: "fullLength",
+    type: "number",
+    placeholder: "أدخل الطول الكامل هنا بالبوصة",
+    label: "الطول الكامل",
     componentType: "input",
   },
 ];

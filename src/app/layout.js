@@ -7,7 +7,12 @@ import FixedContact from "./components/FixedContact";
 import { Suspense } from "react";
 import { PulseLoader } from "react-spinners";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata = {
   title: "تهاني السعيدي | العباية",
@@ -18,7 +23,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ar" dir="rtl">
-      <body className={inter.className}>
+      <body className={`${inter.variable}`}>
         <Suspense
           fallback={
             <div className="h-screen w-full flex items-center justify-center">

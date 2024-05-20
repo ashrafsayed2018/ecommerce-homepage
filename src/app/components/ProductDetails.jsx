@@ -1,34 +1,60 @@
 "use client";
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { GlobalContext } from "@/context";
 import { toast } from "react-toastify";
 import { addToCart } from "@/services/cart";
 import Loader from "./Loader";
 import ToastNotification from "./Notification";
+import { ProductDimensionsformControls } from "@/utils";
+import InputComponent from "./formElements/inputComponent";
+const initialFormData = ProductDimensionsformControls.reduce((acc, curr) => {
+  acc[curr.id] = "";
+  return acc;
+}, {});
 
 export default function ProductDetails({ product }) {
+  const [formData, setFormData] = useState(initialFormData);
   const { loader, setLoader, setShowCartModal, user } =
     useContext(GlobalContext);
+
+  function isFormValid() {
+    const { chestSize, shoulderSize, sleeveSize, fullLength } = formData;
+
+    return (
+      chestSize.trim() !== "" &&
+      shoulderSize.trim() !== "" &&
+      sleeveSize.trim() !== "" &&
+      fullLength.trim() != []
+    );
+  }
   async function handleAddToCart(product) {
     setLoader({ loading: true, id: product._id });
-    const response = await addToCart({
-      productID: product._id,
-      userID: user.id,
-    });
-    if (response.success) {
-      toast.success(response.message);
-      setShowCartModal(true);
-      setLoader({ loading: false, id: "" });
+    if (isFormValid()) {
+      const response = await addToCart({
+        productID: product._id,
+        userID: user.id,
+        ...formData,
+      });
+      if (response.success) {
+        toast.success(response.message);
+        setShowCartModal(true);
+        setLoader({ loading: false, id: "" });
+        setFormData(initialFormData);
+      } else {
+        setShowCartModal(true);
+        setLoader({ loading: false, id: "" });
+        toast.error(response.message);
+      }
     } else {
-      setShowCartModal(true);
       setLoader({ loading: false, id: "" });
-      toast.error(response.message);
+      toast.error("من فضلك اكمل البيانات");
     }
   }
+  console.log(formData, "formData");
   return (
-    <section className="mx-auto mt-6 max-w-screen-xl px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto px-4">
+    <section className="mx-auto mt-6 max-w-screen-xl sm:px-6 lg:px-8">
+      <div className="container mx-auto">
         <div className="lg:col-gap-12 xl:col-gap-12 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16">
           <div className="lg:col-span-3 lg:row-end-1">
             <div className="lg:flex items-start">
@@ -69,37 +95,54 @@ export default function ProductDetails({ product }) {
             </div>
           </div>
           {/* product details */}
-          <div className="lg:col-span-2 lg:row-span-2 lg:row-end-2">
-            <h1 className="sm:text-2xl font-bold text-gray-900">
+          <div className="lg:col-span-2 lg:row-span-2 lg:row-end-2 ">
+            <h1 className="sm:text-2xl font-bold text-gray-900 mb-6">
               {product.name}
             </h1>
+
+            <div className="flex items-center gap-3 my-4">
+              <h1
+                className={`text-sm lg:text-xl font-bold ${
+                  product.onSale === "yes" ? "line-through" : ""
+                }`}
+              >
+                د.ك
+                {"  "} {product.price}
+              </h1>
+              {product.onSale === "yes" ? (
+                <p className="text-sm lg:text-xl text-red-700">
+                  <span className="text[10px]">
+                    {" "}
+                    د.ك
+                    {"  "}{" "}
+                  </span>
+                  {(
+                    product.price -
+                    product.price * (product.priceDrop / 100)
+                  ).toFixed(2)}
+                </p>
+              ) : null}
+            </div>
+            {/* product dimensions form */}
+            <div className="mt-12">
+              {ProductDimensionsformControls.map((controlItem, index) => (
+                <div className="w-full mb-8" key={index}>
+                  <InputComponent
+                    label={controlItem.label}
+                    type={controlItem.type}
+                    placeholder={controlItem.placeholder}
+                    value={formData[controlItem.id]}
+                    onChange={(e) => {
+                      setFormData({
+                        ...formData,
+                        [controlItem.id]: e.target.value,
+                      });
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
             <div className="mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
-              <div className="flex items-center gap-3 my-4">
-                <h1
-                  className={`text-sm lg:text-xl font-bold ${
-                    product.onSale === "yes" ? "line-through" : ""
-                  }`}
-                >
-                  د.ك
-                  {"  "} {product.price}
-                </h1>
-                {product.onSale === "yes" ? (
-                  <p className="text-sm lg:text-xl text-red-700">
-                    <span className="text[10px]">
-                      {" "}
-                      د.ك
-                      {"  "}{" "}
-                    </span>
-                    {(
-                      product.price -
-                      product.price * (product.priceDrop / 100)
-                    ).toFixed(2)}
-                  </p>
-                ) : null}
-              </div>
-              {/* <button type="button" className="button w-3/5">
-                Add to cart
-              </button> */}
               <button
                 className=" w-3/5 text-center p-3 rounded-xl  my-4 mx-auto bg-blue-700 text-white"
                 onClick={() => handleAddToCart(product)}
@@ -134,7 +177,9 @@ export default function ProductDetails({ product }) {
                   </a>
                 </nav>
               </div>
-              <p className="mt-8 flow-root sm:mt-12">{product.description}</p>
+              <p className="mt-2 flow-root sm:mt-4 text-gray-800">
+                {product.description}
+              </p>
             </div>
           </div>
         </div>

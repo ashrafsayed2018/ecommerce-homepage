@@ -34,7 +34,7 @@ export default function AdminLeftNav({ isAsideOpen, setIsAsideOpen }) {
           )}
         </button>
 
-        <div className="w-full profile flex gap-8  items-center justify-between">
+        <div className=" md:w-full profile flex gap-8 items-center justify-between">
           <div className="info">
             <p>
               مرحبا <b>{user.name}</b>

@@ -34,7 +34,8 @@ export default function Hero() {
           alt=""
           width={500}
           height={500}
-          priority={true}
+          placeholder="blur"
+          blurDataURL={`/images/hero${heroImageIndex}.jpg`}
           className="w-full h-[90%]"
         />
       </div>

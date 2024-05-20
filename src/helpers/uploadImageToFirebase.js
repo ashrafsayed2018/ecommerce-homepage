@@ -17,11 +17,11 @@ function createUniqueFileName(getfile) {
   return `${getfile.name}-${timestamp}-${randomString}`;
 }
 
-export async function helperForUploadImageToFirebase(file) {
+export async function helperForUploadImageToFirebase(file, folder) {
   const getfileName = createUniqueFileName(file);
 
   // create storage reference in firebase storage system
-  const storageReference = ref(storage, `product-images/${getfileName}`);
+  const storageReference = ref(storage, `${folder}/${getfileName}`);
   const uploadImage = uploadBytesResumable(storageReference, file);
 
   return new Promise(function (resolve, reject) {

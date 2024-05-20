@@ -1,6 +1,6 @@
 import { AuthUser } from "@/authUser/AuthUser";
 import connectToDb from "@/database";
-import Order from "@/models/order";
+import Setting from "@/models/setting";
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
@@ -10,21 +10,13 @@ export async function GET(req) {
   try {
     const authenticatedUser = await AuthUser(req);
     if (authenticatedUser) {
-      const { searchParams } = new URL(req.url);
-      const id = searchParams.get("id");
-      if (!id) {
-        return NextResponse.json({
-          success: false,
-          message: "product id is required",
-        });
-      }
-      const extractOrder = await Order.findById(id).populate(
-        "orderItems.product"
-      );
-      if (extractOrder) {
+      const settings = await Setting.findOne();
+
+      if (settings) {
+        const { _id, siteName, logoUrl } = settings;
         return NextResponse.json({
           success: true,
-          data: extractOrder,
+          data: { _id, siteName, logoUrl },
         });
       } else {
         return NextResponse.json({

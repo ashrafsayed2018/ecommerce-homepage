@@ -1,5 +1,6 @@
 "use client";
 import { GlobalContext } from "@/context";
+import { getPriceAfterDiscount } from "@/helpers/priceAfterDiscount";
 import { getOrderDetails } from "@/services/order";
 import { useParams, useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
@@ -65,32 +66,37 @@ export default function OrderDetails() {
             {orderDetails &&
             orderDetails.orderItems &&
             orderDetails.orderItems.length
-              ? orderDetails.orderItems.map((item) => (
-                  <div
-                    key={item._id}
-                    className="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full"
-                  >
-                    <div className="pb-4 md:pb-8 w-full md:w-40">
-                      <img
-                        src={item && item.product && item.product.imageUrl}
-                        className="w-full hidden md:block"
-                      />
-                    </div>
-                    <div className="border-b border-gray-300 md:flex-row flex-col flex justify-between items-start w-full pb-8 space-y-4 md:space-y-0">
-                      <div className="w-full flex flex-col justify-end items-start space-y-8">
-                        <h3 className="text-xl font-semibold leading-6 text-gray-900 pr-4">
-                          {item && item.product && item.product.name}
-                        </h3>
+              ? orderDetails.orderItems.map((item) => {
+                  return (
+                    <div
+                      key={item._id}
+                      className="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full"
+                    >
+                      <div className="pb-4 md:pb-8 w-full md:w-40">
+                        <img
+                          src={item && item.product && item.product.imageUrl}
+                          className="w-full h-20 hidden md:block bg-red-700"
+                        />
                       </div>
-                      <div className="w-full flex justify-between items-start space-x-8">
-                        <h3 className="text-xl font-semibold leading-6 text-gray-900">
-                          {" "}
-                          د.ك {item && item.product && item.product.price}
-                        </h3>
+                      <div className="border-b border-gray-300 md:flex-row flex-col flex justify-between items-start w-full pb-8 space-y-4 md:space-y-0">
+                        <div className="w-full flex flex-col justify-end items-start space-y-8">
+                          <h3 className="text-xl font-semibold leading-6 text-gray-900 pr-4">
+                            {item && item.product && item.product.name}
+                          </h3>
+                        </div>
+                        <div className="w-full flex justify-between items-start space-x-8">
+                          <h3 className="text-xl font-semibold leading-6 text-gray-900">
+                            {" "}
+                            د.ك{" "}
+                            {item &&
+                              item.product &&
+                              getPriceAfterDiscount(item.product)}
+                          </h3>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))
+                  );
+                })
               : null}
           </div>
           <div className="flex justify-center flex-col md:flex-row items-stretch w-full space-y-4 md:space-y-0 md:space-x-5 xl:space-x-8">

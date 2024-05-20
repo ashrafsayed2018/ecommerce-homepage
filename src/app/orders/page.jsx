@@ -59,57 +59,63 @@ export default function Orders() {
               <div className="flow-root">
                 {allOrdersForUser && allOrdersForUser.length ? (
                   <ul className="flex flex-col gap-4 overflow-x-auto">
-                    {allOrdersForUser.map((item) => (
-                      <li
-                        key={item._id}
-                        className="bg-gray-200 shadow p-5 flex flex-col space-y-3 py-6 text-left overflow-x-auto hover:bg-gray-300 cursor-pointer transition-all duration-300"
-                      >
-                        <div className="flex items-center justify-between ">
-                          <h1 className=" text-[12px] font-semibold">
-                            # الطلب : {item._id}
-                          </h1>
-                          <div className="flex items-center">
-                            <p className="mr-3 text-sm text-gray-900">المبلغ</p>
-                            <p className="mr-1 text-lg  font-semibold text-gray-900">
-                              {" "}
-                              د.ك {item.totalPrice}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="flex gap-2">
-                          {item.orderItems.map((orderItem, index) => (
-                            <div key={index} className="shrink-0">
-                              <img
-                                alt="Order Item"
-                                className="h-24 w-24 max-w-full rounded-lg object-cover"
-                                src={
-                                  orderItem &&
-                                  orderItem.product &&
-                                  orderItem.product.imageUrl
-                                }
-                              />
+                    {allOrdersForUser.map((item) => {
+                      return (
+                        <li
+                          key={item._id}
+                          className="bg-gray-200 shadow p-5 flex flex-col space-y-3 py-6 text-left overflow-x-auto hover:bg-gray-300 cursor-pointer transition-all duration-300"
+                        >
+                          <div className="flex items-center justify-between ">
+                            <h1 className=" text-[12px] font-semibold">
+                              # الطلب : {item._id}
+                            </h1>
+                            <div className="flex items-center">
+                              <p className="mr-3 text-sm text-gray-900">
+                                المبلغ
+                              </p>
+                              <p className="mr-1 text-lg  font-semibold text-gray-900">
+                                {" "}
+                                د.ك {item.totalPrice}
+                              </p>
                             </div>
-                          ))}
-                        </div>
-                        <div className="flex gap-5">
-                          <button
-                            className={`disabled:opacity-50 mt-5 mr-5  inline-block   text-center p-3 rounded-xl my-4 mx-auto ${
-                              item.isProcessing ? "bg-red-700" : "bg-green-700"
-                            } text-white`}
-                          >
-                            {item.isProcessing
-                              ? "الطلب في الانتظار"
-                              : "الطلب تحت التوصيل"}
-                          </button>
-                          <button
-                            onClick={() => router.push(`/orders/${item._id}`)}
-                            className=" mt-5 mr-5  inline-block text-center p-3 rounded-xl my-4 mx-auto bg-blue-700 text-white"
-                          >
-                            عرض تفاصيل الطلب
-                          </button>
-                        </div>
-                      </li>
-                    ))}
+                          </div>
+                          <div className="flex gap-2">
+                            {item.orderItems.map((orderItem, index) => (
+                              <div key={index} className="shrink-0">
+                                <img
+                                  alt="Order Item"
+                                  className="h-24 w-24 max-w-full rounded-lg object-cover"
+                                  src={
+                                    orderItem &&
+                                    orderItem.product &&
+                                    orderItem.product.imageUrl
+                                  }
+                                />
+                              </div>
+                            ))}
+                          </div>
+                          <div className="flex gap-5">
+                            <button
+                              className={`disabled:opacity-50 mt-5 mr-5  inline-block   text-center p-3 rounded-xl my-4 mx-auto ${
+                                item.isProcessing
+                                  ? "bg-red-700"
+                                  : "bg-green-700"
+                              } text-white`}
+                            >
+                              {item.isProcessing
+                                ? "الطلب في الانتظار"
+                                : "الطلب تحت التوصيل"}
+                            </button>
+                            <button
+                              onClick={() => router.push(`/orders/${item._id}`)}
+                              className=" mt-5 mr-5  inline-block text-center p-3 rounded-xl my-4 mx-auto bg-blue-700 text-white"
+                            >
+                              عرض تفاصيل الطلب
+                            </button>
+                          </div>
+                        </li>
+                      );
+                    })}
                   </ul>
                 ) : (
                   <div className="flex flex-col justify-center items-center h-screen">

@@ -49,7 +49,6 @@ export default function AccountPage() {
             userID: user?.id,
           });
     if (response.success) {
-      console.log(response, "currentEditedAddressId");
       setAddress({ ...address, ...response.data });
       setLoader({ loading: false, id: "" });
       toast.success(response.message);

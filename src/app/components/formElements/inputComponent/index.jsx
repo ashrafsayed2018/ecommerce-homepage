@@ -1,3 +1,7 @@
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
+
 export default function InputComponent({
   label,
   placeholder,
@@ -6,21 +10,36 @@ export default function InputComponent({
   onChange,
   labelFor,
 }) {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => !prevState);
+  };
+
   return (
-    <div className="relative">
+    <div className="relative py-4">
+      {type === "password" && (
+        <div className="absolute top-1/2 translate-y-1/8 -translate-x-1/2 left-3 cursor-pointer">
+          <FontAwesomeIcon
+            icon={showPassword ? faEyeSlash : faEye}
+            className="w-4 h-4"
+            onClick={togglePasswordVisibility}
+          />
+        </div>
+      )}
       <label
         htmlFor={labelFor}
-        className="absolute bg-white pt-0 pr-2 pb-0 pl-2 -mt-3 mr-0 mb-0 ml-2 font-medium text-gray-600"
+        className="relative block mb-2 text-sm font-medium text-gray-700"
       >
         {label}
       </label>
       <input
         id={labelFor}
-        type={type || "text"}
+        type={showPassword ? "text" : type || "text"}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="block bg-white border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:border-black w-full p-4 mt-0 m-0 text-base"
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-700"
       />
     </div>
   );

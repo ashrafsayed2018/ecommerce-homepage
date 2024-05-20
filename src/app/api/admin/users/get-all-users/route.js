@@ -2,7 +2,6 @@ import { AuthUser } from "@/authUser/AuthUser";
 import connectToDb from "@/database";
 import User from "@/models/user";
 import { NextResponse } from "next/server";
-
 export const dynamic = "force-dynamic";
 
 connectToDb();
@@ -10,6 +9,7 @@ connectToDb();
 export async function GET(req) {
   try {
     const authenticatedUser = await AuthUser(req);
+    console.log(authenticatedUser, "authenticatedUser");
     if (!authenticatedUser) {
       return NextResponse.json({
         success: false,

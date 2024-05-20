@@ -9,6 +9,10 @@ export const dynamic = "force-dynamic";
 const AddToCart = Joi.object({
   userID: Joi.string().required(),
   productID: Joi.string().required(),
+  chestSize: Joi.number().required(),
+  shoulderSize: Joi.number().required(),
+  sleeveSize: Joi.number().required(),
+  fullLength: Joi.number().required(),
 });
 connectToDb();
 export async function POST(req) {
@@ -16,13 +20,22 @@ export async function POST(req) {
     const authenticatedUser = await AuthUser(req);
     if (authenticatedUser) {
       const data = await req.json();
-
-      const userID = authenticatedUser.id;
-
-      const { productID } = data;
-      const finalData = { ...data, userID };
-      const { error } = AddToCart.validate({ userID, productID });
-
+      const {
+        userID,
+        productID,
+        chestSize,
+        shoulderSize,
+        sleeveSize,
+        fullLength,
+      } = data;
+      const { error } = AddToCart.validate({
+        userID,
+        productID,
+        chestSize,
+        shoulderSize,
+        sleeveSize,
+        fullLength,
+      });
       if (error) {
         return NextResponse.json({
           success: false,
@@ -37,7 +50,15 @@ export async function POST(req) {
             "هذا المنتج موجود بالفعل في عربة التسوق الخاصة بك، الرجاء تحديث الصفحة لتحديث عربة التسوق",
         });
       }
-      const saveProductToCart = await Cart.create(finalData);
+
+      const saveProductToCart = await Cart.create({
+        userID,
+        productID,
+        chestSize,
+        shoulderSize,
+        sleeveSize,
+        fullLength,
+      });
       if (saveProductToCart) {
         return NextResponse.json({
           success: true,

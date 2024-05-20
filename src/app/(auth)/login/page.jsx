@@ -1,5 +1,5 @@
 "use client";
-import Input from "@/app/components/Input";
+import InputComponent from "@/app/components/formElements/inputComponent";
 import Loader from "@/app/components/Loader";
 import Notification from "@/app/components/Notification";
 import { GlobalContext } from "@/context";
@@ -56,7 +56,7 @@ export default function LoginPage() {
       />
       <div className="mt-10">
         {LoginFormControls.map((control) => (
-          <Input
+          <InputComponent
             key={control.id}
             label={control.label}
             labelFor={control.id}

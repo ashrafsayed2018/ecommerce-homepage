@@ -91,8 +91,6 @@ export default function UpdateProduct() {
     }
   }
 
-  console.log(formData);
-
   return (
     <div className="w-full m-0 mt-5 relative">
       <div className="flex flex-col justify-start items-start p-10 relative shadow-xl rounded-xl bg-white">

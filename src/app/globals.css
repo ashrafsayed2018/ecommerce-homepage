@@ -11,9 +11,10 @@
   }
 }
 
-/* * {
-  outline: 1px solid red;
-} */
+html {
+  font-family: var(--font-inter);
+}
+
 body {
   overflow-x: hidden;
 }
@@ -87,8 +88,8 @@ body {
   aside {
     position: fixed;
     background-color: white;
+    top: 4rem;
     left: -100%;
-
     width: 18rem;
     z-index: 3;
     box-shadow: 1rem 3rem 4rem rgba(0, 0, 0, 0.3);
@@ -117,7 +118,7 @@ body {
     display: inline;
   }
 
-  aside .sidebar a:last-child {
+  aside .sidebar button {
     position: absolute;
     bottom: 5rem;
   }
@@ -148,6 +149,7 @@ body {
     margin: 0 auto 0;
   }
   .left-section nav {
+    background: #000;
     width: 100%;
     position: fixed;
     top: 0;

@@ -13,10 +13,20 @@ import { toast } from "react-toastify";
 import Link from "next/link";
 import ToastNotification from "../components/Notification";
 import Loader from "../components/Loader";
+import { CartItems } from "@/utils";
+import Cookies from "js-cookie";
 export const dynamic = "force-dynamic";
 export default function CheckoutPage() {
-  const { user, cartItems, address, setAddress, loader, setLoader } =
-    useContext(GlobalContext);
+  const {
+    user,
+    setUser,
+    setIsAuthUser,
+    cartItems,
+    address,
+    setAddress,
+    loader,
+    setLoader,
+  } = useContext(GlobalContext);
   const [isPaymentProcessing, setIsPaymentProcessing] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
 
@@ -50,11 +60,15 @@ export default function CheckoutPage() {
     }));
 
     const response = await callStripeSession(createLineItems);
-
-    if (response.error) {
-      toast.error(response.error.message);
+    if (response.success === false) {
+      toast.error(response.message);
       setLoader(false);
-
+      // logout the user
+      setIsAuthUser(false);
+      setUser({});
+      Cookies.remove("token");
+      localStorage.removeItem("user");
+      router.push("login");
       return;
     } else {
       const userAddress = await getAddress(user.id);
@@ -77,7 +91,7 @@ export default function CheckoutPage() {
         "checkoutFormData",
         JSON.stringify(checkoutFormData)
       );
-
+      const { sessionId } = response;
       const { error } = await stripe.redirectToCheckout({
         sessionId: response.id,
       });
@@ -190,13 +204,13 @@ export default function CheckoutPage() {
         <div className="grid sm:px-10 md:grid-cols-2 lg:px-20 xl:px-32">
           <div className="px-4 pt-8">
             <p className="font-medium text-xl">تفاصيل الطلب</p>
-            <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-5">
+            <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-5 h-[700px] overflow-y-auto">
               {cartItems && cartItems.length ? (
                 cartItems.map((cartItem) => {
                   return (
                     <div
                       key={cartItem._id}
-                      className="flex flex-col rounded-lg sm:flex-row"
+                      className="rounded-lg mb-4 border-b-2 border-b-gray-300"
                     >
                       <img
                         src={
@@ -207,17 +221,42 @@ export default function CheckoutPage() {
                         alt={cartItem.productID.name}
                         className="mt-2 h-24 w-28 rounded-md object-cover object-center"
                       />
-                      <div className="flex w-full flex-col p-4">
+                      <div className="flex w-full flex-col p-4 mb-2">
                         <span className="font-bold">
                           {cartItem &&
                             cartItem.productID &&
                             cartItem.productID.name}
                         </span>
                         <span className="font-semibold">
+                          {" "}
+                          د.ك{" "}
                           {cartItem &&
                             cartItem.productID &&
                             getPriceAfterDiscount(cartItem.productID)}
                         </span>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl mb-4 text-gray-800">
+                          مقاسات المنتج
+                        </h3>
+                        <ul className="grid grid-cols-4 gap-6 bg-gray-200 p-2 rounded-xl">
+                          <li className="flex gap-4 text-sm">
+                            <span>حجم الصدر</span>
+                            <span>{cartItem.chestSize}</span>
+                          </li>
+                          <li className="flex gap-4 text-sm">
+                            <span>حجم الكتف</span>
+                            <span>{cartItem.shoulderSize}</span>
+                          </li>
+                          <li className="flex gap-4 text-sm">
+                            <span>حجم الكم</span>
+                            <span>{cartItem.sleeveSize}</span>
+                          </li>
+                          <li className="flex gap-4 text-sm">
+                            <span>الطول</span>
+                            <span>{cartItem.fullLength}</span>
+                          </li>
+                        </ul>
                       </div>
                     </div>
                   );

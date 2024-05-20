@@ -18,9 +18,9 @@ export default function AdminSideBar({ isAsideOpen, setIsAsideOpen }) {
   };
   return (
     <aside
-      className={`h-screen ${isAsideOpen ? "block" : "hidden md:block"} block`}
+      className={`h-screen  ${isAsideOpen ? "block" : "hidden md:block"} block`}
     >
-      <div className="toggle flex items-center justify-between ">
+      <div className="toggle  flex items-center justify-between ">
         <Link href="/" className="logo flex items-center justify-between gap-2">
           <img
             src="/images/tahani_logo.jpg"
