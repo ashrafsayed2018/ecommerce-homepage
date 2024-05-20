@@ -10,6 +10,11 @@ export default function Video() {
           className="w-full h-full object-fill"
           controls
           autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          style={{ objectFit: "cover" }}
         ></video>
       </div>
     </>
