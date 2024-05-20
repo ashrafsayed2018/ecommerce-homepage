@@ -8,6 +8,7 @@ import Loader from "./Loader";
 import ToastNotification from "./Notification";
 import { ProductDimensionsformControls } from "@/utils";
 import InputComponent from "./formElements/inputComponent";
+import { useRouter } from "next/navigation";
 const initialFormData = ProductDimensionsformControls.reduce((acc, curr) => {
   acc[curr.id] = "";
   return acc;
@@ -17,6 +18,7 @@ export default function ProductDetails({ product }) {
   const [formData, setFormData] = useState(initialFormData);
   const { loader, setLoader, setShowCartModal, user } =
     useContext(GlobalContext);
+  const router = useRouter();
 
   function isFormValid() {
     const { chestSize, shoulderSize, sleeveSize, fullLength } = formData;
@@ -41,6 +43,7 @@ export default function ProductDetails({ product }) {
         setShowCartModal(true);
         setLoader({ loading: false, id: "" });
         setFormData(initialFormData);
+        router.push("/cart");
       } else {
         setShowCartModal(true);
         setLoader({ loading: false, id: "" });
@@ -51,7 +54,6 @@ export default function ProductDetails({ product }) {
       toast.error("من فضلك اكمل البيانات");
     }
   }
-  console.log(formData, "formData");
   return (
     <section className="mx-auto mt-6 max-w-screen-xl sm:px-6 lg:px-8">
       <div className="container mx-auto">
