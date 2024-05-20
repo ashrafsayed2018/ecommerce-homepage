@@ -8,8 +8,10 @@ import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 
 export default function Navbar() {
-  const { user, setUser, setIsAuthUser, cartItems } = useContext(GlobalContext);
+  const { user, setUser, setIsAuthUser, cartItems, siteSetting } =
+    useContext(GlobalContext);
   const [isOpen, setIsOpen] = useState(false);
+
   const router = useRouter();
 
   const handleLogout = () => {
@@ -19,6 +21,23 @@ export default function Navbar() {
     localStorage.removeItem("user");
     router.push("/");
   };
+
+  // useEffect(() => {
+  //   async function fetchSiteSettings() {
+  //     try {
+  //       const response = await getSettingsService();
+  //       if (response) {
+  //         setSiteSitting(response.data);
+  //       }
+  //     } catch (error) {
+  //       setSiteSitting(initialSiteSitting);
+  //       console.error("Error fetching site settings:", error);
+  //     }
+  //   }
+
+  //   fetchSiteSettings();
+  // }, []);
+
   return (
     <nav className="bg-white">
       <div className="flex items-center justify-between p-4">
@@ -26,7 +45,7 @@ export default function Navbar() {
         <div className="flex items-center gap-8">
           <Link href="/">
             <Image
-              src="/images/tahani_logo.jpg"
+              src={siteSetting?.logoUrl || "/images/tahani_logo.jpg"}
               width={60}
               height={60}
               priority={true}

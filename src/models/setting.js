@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 const SettingSchema = new mongoose.Schema({
   siteName: String,
+  siteDescription: String,
   logoUrl: String,
 });
 

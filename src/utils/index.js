@@ -216,6 +216,13 @@ export const SettingsFormControls = [
     label: "اسم الموقع",
     componentType: "input",
   },
+  {
+    id: "siteDescription",
+    type: "text",
+    placeholder: "وصف الموقع",
+    label: "وصف الموقع",
+    componentType: "input",
+  },
 ];
 
 export const UpdateUserInfoFormControls = [

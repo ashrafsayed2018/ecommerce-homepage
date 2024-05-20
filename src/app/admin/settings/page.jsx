@@ -17,6 +17,7 @@ import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 const settingsInitialFormData = {
   siteName: "",
+  siteDescription: "",
   logoUrl: "",
 };
 const updateUserInitialFormData = UpdateUserInfoFormControls.reduce(
@@ -82,16 +83,19 @@ export default function Settings() {
 
   // check if form is valid
   function isFormValid() {
-    const { siteName, logoUrl } = settingsFormData;
+    const { siteName, siteDescription, logoUrl } = settingsFormData;
 
-    return siteName.trim() !== "" && logoUrl.trim() !== "";
+    return (
+      siteName.trim() !== "" &&
+      siteDescription.trim() !== "" &&
+      logoUrl.trim() !== ""
+    );
   }
   async function handleCreateSettings() {
     setLoader({ loading: true, id: "createSitting" });
     if (isFormValid()) {
       setLoader({ loading: false, id: "createSitting" });
       const logoUrl = await changeImage(event); // Wait for the image upload to complete
-      console.log(settingsFormData, "settingsFormData");
       const response = await createSittingService(settingsFormData);
 
       if (response.success) {
@@ -109,8 +113,13 @@ export default function Settings() {
 
   async function handleUpdateSettings() {
     setLoader({ loading: true, id: "updateSitting" });
-    const { siteName, logoUrl } = settingsFormData;
-    const response = await updateSittingService({ siteName, logoUrl });
+    const { siteName, siteDescription, logoUrl } = settingsFormData;
+    const response = await updateSittingService({
+      siteName,
+      siteDescription,
+      logoUrl,
+    });
+    console.log(response, "from updaing user sittings");
     if (response.success) {
       setLoader({ loading: false, id: "updateSitting" });
       toast.success(response.message);

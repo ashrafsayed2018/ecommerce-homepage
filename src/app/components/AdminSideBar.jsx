@@ -8,7 +8,8 @@ import Link from "next/link";
 import { useContext } from "react";
 export default function AdminSideBar({ isAsideOpen, setIsAsideOpen }) {
   const router = useRouter();
-  const { user, setUser, setIsAuthUser } = useContext(GlobalContext);
+  const { user, setUser, setIsAuthUser, siteSetting } =
+    useContext(GlobalContext);
   const handleLogout = () => {
     setIsAuthUser(false);
     setUser({});
@@ -23,7 +24,7 @@ export default function AdminSideBar({ isAsideOpen, setIsAsideOpen }) {
       <div className="toggle  flex items-center justify-between ">
         <Link href="/" className="logo flex items-center justify-between gap-2">
           <img
-            src="/images/tahani_logo.jpg"
+            src={`${siteSetting?.logoUrl || "/images/tahani_logo.jpg"}`}
             alt="logo"
             className="w-8 h-8 object-cover"
           />

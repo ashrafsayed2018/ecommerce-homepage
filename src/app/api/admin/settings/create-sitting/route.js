@@ -11,6 +11,7 @@ const joiArabicMessages = {
 
 const createSettingSchema = Joi.object({
   siteName: Joi.string().required(),
+  siteDescription: Joi.string().required(),
   logoUrl: Joi.string().required(),
 })
   .messages(joiArabicMessages)
@@ -25,7 +26,6 @@ export async function POST(req) {
 
     if (authenticatedUser?.role === "admin") {
       const extractedData = await req.json();
-      // const { error } = createSettingSchema.validate(extractedData);
       const { error } = createSettingSchema.validate(extractedData);
       if (error) {
         return NextResponse.json({
@@ -42,6 +42,7 @@ export async function POST(req) {
         });
       }
       const newSetting = await Setting.create(extractedData);
+      console.log(newSetting, " here is the extracted data");
 
       if (newSetting) {
         return NextResponse.json({

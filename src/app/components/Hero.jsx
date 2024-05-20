@@ -1,12 +1,15 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import { GlobalContext } from "@/context";
 
 export default function Hero() {
+  const { siteSetting } = useContext(GlobalContext);
+
   const [heroImageIndex, setHeroImageIndex] = useState(0);
 
   const images = [
@@ -43,10 +46,11 @@ export default function Hero() {
       <div className="info hidden md:flex flex-col p-8 justify-evenly">
         <div className="about">
           <h1 className="text-2xl text-gray-700 font-bold mb-8">
-            متجر تهاني السعيدي
+            {siteSetting?.siteName || "متجر تهاني السعيدي"}
           </h1>
           <p className="text-gray-700 text-lg">
-            تصاميم تهاني السعيد بالحلة الجديده
+            {siteSetting?.siteDescription ||
+              "تصاميم تهاني السعيد بالحلة الجديده"}
           </p>
           <p className="text-gray-700 text-lg">
             تطورنا معاكم وكبرنا والقادم احلى واجمل{" "}

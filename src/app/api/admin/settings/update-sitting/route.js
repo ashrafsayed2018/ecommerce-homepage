@@ -12,6 +12,7 @@ const joiArabicMessages = {
 
 const updateSettingSchema = Joi.object({
   siteName: Joi.string(),
+  siteDescription: Joi.string(),
   logoUrl: Joi.string(),
 })
   .messages(joiArabicMessages)
@@ -43,6 +44,7 @@ export async function PUT(req) {
           extractedData,
           { new: true }
         );
+
         return NextResponse.json({
           success: true,
           message: "تم تحديث الاعدادات بنجاح",
