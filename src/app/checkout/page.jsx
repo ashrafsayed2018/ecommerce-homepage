@@ -65,7 +65,7 @@ export default function CheckoutPage() {
       setLoader(false);
       // logout the user
       setIsAuthUser(false);
-      setUser({});
+      setUser(null);
       Cookies.remove("token");
       localStorage.removeItem("user");
       router.push("login");
@@ -100,7 +100,7 @@ export default function CheckoutPage() {
   }
 
   useEffect(() => {
-    if (user.id) {
+    if (user?.id) {
       getUserAddress();
     }
   }, [user]);
@@ -115,7 +115,7 @@ export default function CheckoutPage() {
         cartItems.length > 0
       ) {
         setIsPaymentProcessing(true);
-        const userAddress = await getAddress(user.id);
+        const userAddress = await getAddress(user?.id);
         const addressData = userAddress.data;
         const { fullName, country, city, address, postalCode } = addressData;
 

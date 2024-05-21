@@ -12,7 +12,7 @@ export default function GlobalState({ children }) {
   const [allOrdersForUser, setAllOrdersForUser] = useState([]);
   const [showCartModal, setShowCartModal] = useState(false);
   // user state
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [address, setAddress] = useState({});
   const [orderDetails, setOrderDetails] = useState(null);
@@ -31,7 +31,7 @@ export default function GlobalState({ children }) {
   useEffect(() => {
     if (Cookies.get("token") !== undefined) {
       setIsAuthUser(true);
-      const userData = JSON.parse(localStorage.getItem("user")) || {};
+      const userData = JSON.parse(localStorage.getItem("user")) || null;
 
       // Check if user data has changed
       if (JSON.stringify(userData) !== JSON.stringify(user)) {
@@ -46,7 +46,7 @@ export default function GlobalState({ children }) {
     } else {
       // make use un authenticated
       setIsAuthUser(false);
-      setUser({});
+      setUser(null);
     }
   }, [Cookies.get("token")]);
   useEffect(() => {

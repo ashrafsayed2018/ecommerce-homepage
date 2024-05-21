@@ -16,7 +16,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     setIsAuthUser(false);
-    setUser({});
+    setUser(null);
     Cookies.remove("token");
     localStorage.removeItem("user");
     router.push("/");
@@ -63,7 +63,7 @@ export default function Navbar() {
                 </li>
               );
             })}
-            {user.role === "admin" ? (
+            {user && user.role === "admin" ? (
               <li className="py-2">
                 <Link href="/admin">لوحة التحكم</Link>
               </li>
@@ -96,7 +96,7 @@ export default function Navbar() {
               />
             </svg>
           </button>
-          {Object.keys(user).length ? (
+          {user ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -160,7 +160,7 @@ export default function Navbar() {
             </li>
           );
         })}
-        {user.role === "admin" ? (
+        {user && user.role === "admin" ? (
           <li className="py-2">
             <button
               onClick={() => {
