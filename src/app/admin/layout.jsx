@@ -17,7 +17,6 @@ export default function AdminLayout({ children }) {
       const response = await getUserByIdService();
       if (response.success) {
         setUser(response.data);
-        console.log(response.data);
         if (response.data != null) {
           if (response.data?.role !== "admin") {
             router.push("/");
