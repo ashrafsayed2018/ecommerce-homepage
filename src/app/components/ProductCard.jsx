@@ -4,7 +4,7 @@ import { getPriceAfterDiscount } from "@/helpers/priceAfterDiscount";
 
 export default function ProductCard({ product }) {
   return (
-    <div className="bg-white shadow-md hover:scale-105 hover:shadow-xl duration-500 rounded-xl h-screen mb-16">
+    <div className="bg-white shadow-md hover:scale-105 hover:shadow-xl duration-500 rounded-xl h-[650px] mb-16">
       <Link href={`/product/${product._id}`}>
         <Image
           src={product.imageUrl}
@@ -13,7 +13,7 @@ export default function ProductCard({ product }) {
           height={400}
           placeholder="blur"
           blurDataURL={product.imageUrl}
-          className="w-full h-[600px]"
+          className="w-full h-[500px]"
         />
         <div className="px-4 py-3 w-full">
           <span className="mr-3 uppercase text-lg font-bold text-black mb-2">

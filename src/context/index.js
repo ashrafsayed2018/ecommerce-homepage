@@ -1,6 +1,8 @@
 "use client";
 import { getSettingsService } from "@/services/setting";
 import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode"; // Import jwt-decode library
+
 import { createContext, useEffect, useState } from "react";
 export const GlobalContext = createContext(null);
 
@@ -29,26 +31,59 @@ export default function GlobalState({ children }) {
     logoUrl: "/images/tahani_logo.jpg",
   });
   useEffect(() => {
-    if (Cookies.get("token") !== undefined) {
-      setIsAuthUser(true);
-      const userData = JSON.parse(localStorage.getItem("user")) || null;
+    const token = Cookies.get("token");
+    if (token) {
+      // Decode the token to get expiration time
+      const decodedToken = jwtDecode(token);
+      const futureTimeInMillis = Date.now(); //  current time
+      const futureTimeInSeconds = futureTimeInMillis / 1000;
+      const isTokenExpired = decodedToken.exp < futureTimeInSeconds; // Compare expiration time with current time
 
-      // Check if user data has changed
-      if (JSON.stringify(userData) !== JSON.stringify(user)) {
-        setUser(userData);
-      }
-
-      const getCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-      // Check if cart items have changed
-      if (JSON.stringify(getCartItems) !== JSON.stringify(cartItems)) {
-        setCartItems(getCartItems);
+      if (!isTokenExpired) {
+        setIsAuthUser(true);
+        const userData = JSON.parse(localStorage.getItem("user")) || null;
+        if (JSON.stringify(userData) !== JSON.stringify(user)) {
+          setUser(userData);
+        }
+        const getCartItems =
+          JSON.parse(localStorage.getItem("cartItems")) || [];
+        if (JSON.stringify(getCartItems) !== JSON.stringify(cartItems)) {
+          setCartItems(getCartItems);
+        }
+      } else {
+        // Token has expired, log out the user
+        setIsAuthUser(false);
+        setUser(null);
+        Cookies.remove("token");
+        localStorage.removeItem("user");
+        localStorage.removeItem("cartItems");
       }
     } else {
-      // make use un authenticated
       setIsAuthUser(false);
       setUser(null);
     }
-  }, [Cookies.get("token")]);
+  }, []);
+  // useEffect(() => {
+  //   if (Cookies.get("token") !== undefined) {
+  //     setIsAuthUser(true);
+  //     const userData = JSON.parse(localStorage.getItem("user")) || null;
+
+  //     // Check if user data has changed
+  //     if (JSON.stringify(userData) !== JSON.stringify(user)) {
+  //       setUser(userData);
+  //     }
+
+  //     const getCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  //     // Check if cart items have changed
+  //     if (JSON.stringify(getCartItems) !== JSON.stringify(cartItems)) {
+  //       setCartItems(getCartItems);
+  //     }
+  //   } else {
+  //     // make use un authenticated
+  //     setIsAuthUser(false);
+  //     setUser(null);
+  //   }
+  // }, [Cookies.get("token")]);
   useEffect(() => {
     async function fetchSiteSettings() {
       try {
