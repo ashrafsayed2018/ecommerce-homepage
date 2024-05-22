@@ -28,17 +28,29 @@ export default function ProductsPage() {
   }
 
   async function handleDeleteProduct(id) {
-    console.log(id);
-    const response = await deleteProductService(id);
+    // const response = await deleteProductService(id);
 
-    if (response.success) {
-      // setLoader({ loading: false, id: "" });
-      toast.success(response.message);
-      router.refresh();
-      getProducts();
+    // if (response.success) {
+    //   toast.success(response.message);
+    //   router.refresh();
+    //   getProducts();
+    // } else {
+    //   toast.error(response.message);
+    // }
+    if (window.confirm("هل تريد حذف هذا المنتج?")) {
+      // User confirmed deletion
+      const response = await deleteProductService(id);
+
+      if (response.success) {
+        toast.success(response.message);
+        router.refresh();
+        getProducts();
+      } else {
+        toast.error(response.message);
+      }
     } else {
-      // setLoader({ loading: false, id: "" });
-      toast.error(response.message);
+      // User canceled deletion
+      toast.error("تم الغاء الحذف");
     }
   }
   useEffect(() => {
